@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/smart-skool/static/css/main.6813e232.css",
-    "main.js": "/smart-skool/static/js/main.b6a52211.js",
+    "main.js": "/smart-skool/static/js/main.53dfae1b.js",
     "index.html": "/smart-skool/index.html",
     "main.6813e232.css.map": "/smart-skool/static/css/main.6813e232.css.map",
-    "main.b6a52211.js.map": "/smart-skool/static/js/main.b6a52211.js.map"
+    "main.53dfae1b.js.map": "/smart-skool/static/js/main.53dfae1b.js.map"
   },
   "entrypoints": [
     "static/css/main.6813e232.css",
-    "static/js/main.b6a52211.js"
+    "static/js/main.53dfae1b.js"
   ]
 }
