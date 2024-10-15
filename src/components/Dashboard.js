@@ -9,6 +9,10 @@ function Dashboard() {
       <Link to="/payment">
         <button style={styles.button}>Make a Payment</button>
       </Link>
+
+      <Link to="/history">
+        <button style={styles.button}>Check History</button>
+      </Link>
     </div>
   );
 }
@@ -26,7 +30,8 @@ const styles = {
     backgroundColor: '#4CAF50',
     color: 'white',
     border: 'none',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    marginBottom: '10px'
   }
 };
 
