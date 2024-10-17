@@ -5,21 +5,21 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthContext } from "./context/AuthContext";
 
 // import  Parent components
-import ParentDashboard from "./components/ParentDashboard";
-import PaymentHistory from "./components/PaymentHistory";
-import StudentProgress from "./components/StudentProgress";
-import MakePayment from "./components/MakePayment";
-import Profile from "./components/Profile";
-import Communication from "./components/Communication";
+import ParentDashboard from "./components/Parents/ParentDashboard";
+import PaymentHistory from "./components/Parents/PaymentHistory";
+import StudentProgress from "./components/Parents/StudentProgress";
+import MakePayment from "./components/Parents/MakePayment";
+import Profile from "./components/Parents/Profile";
+import Communication from "./components/Parents/Communication";
 
 // import School components
-import AdminDashboard from "./components/AdminDashboard";
-import PaymentManagement from "./components/PaymentManagement";
-import AddStudent from "./components/AddStudent";
-import ManageStudents from "./components/ManageStudents";
-import TeacherManagement from "./components/TeacherManagement";
-import ClassManagement from "./components/ClassManagement";
-import Accouncements from "./components/Accouncements";
+import AdminDashboard from "./components/School/AdminDashboard";
+import PaymentManagement from "./components/School/PaymentManagement";
+import AddStudent from "./components/School/AddStudent";
+import ManageStudents from "./components/School/ManageStudents";
+import TeacherManagement from "./components/School/TeacherManagement";
+import ClassManagement from "./components/School/ClassManagement";
+import Announcements from "./components/School/Announcements";
 
 
 
@@ -42,7 +42,7 @@ function App() {
             } 
           />
           <Route 
-            path="/payment" 
+            path="/make-payment" 
             element={
               <ProtectedRoute requiredRole="parent">
                 <MakePayment />
@@ -132,10 +132,10 @@ function App() {
             } 
           />
           <Route 
-            path="/admin/accouncements" 
+            path="/admin/announcements" 
             element={
               <ProtectedRoute requiredRole="admin">
-                <Accouncements />
+                <Announcements />
               </ProtectedRoute>
             } 
           />

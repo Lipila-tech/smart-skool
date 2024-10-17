@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 function ParentDashboard() {
   return (
     <div style={styles.container}>
-      <h2>ParentDashboard</h2>
+      <h2>Parent Dashboard</h2>
       <p>Welcome to Smart Skool! What would you like to do today?</p>
-      <Link to="/makepayment">
-        <button style={styles.button}>Make a MakePayment</button>
+      <Link to="/make-payment">
+        <button style={styles.button}>Make a Payment</button>
       </Link>
 
-      <Link to="/paymenthistory">
-        <button style={styles.button}>Check PaymentHistory</button>
+      <Link to="/payment-history">
+        <button style={styles.button}>Payment History</button>
       </Link>
     </div>
   );
