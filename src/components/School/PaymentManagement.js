@@ -1,10 +1,10 @@
 import React from "react";
 
-function Payment() {
+function PaymentManagement() {
   return (
     <div style={styles.container}>
-      <h2>Make a Payment</h2>
-      <p>Payment options will go here.</p>
+      <h2>PaymentManagement</h2>
+      <p>PaymentManagement will go here.</p>
     </div>
   );
 }
@@ -19,4 +19,4 @@ const styles = {
   }
 };
 
-export default Payment;
+export default PaymentManagement;

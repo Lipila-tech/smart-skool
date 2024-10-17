@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Dashboard() {
+function ParentDashboard() {
   return (
     <div style={styles.container}>
-      <h2>Parent Dashboard</h2>
+      <h2>ParentDashboard</h2>
       <p>Welcome to Smart Skool! What would you like to do today?</p>
-      <Link to="/payment">
-        <button style={styles.button}>Make a Payment</button>
+      <Link to="/makepayment">
+        <button style={styles.button}>Make a MakePayment</button>
       </Link>
 
-      <Link to="/history">
-        <button style={styles.button}>Check History</button>
+      <Link to="/paymenthistory">
+        <button style={styles.button}>Check PaymentHistory</button>
       </Link>
     </div>
   );
@@ -35,4 +35,4 @@ const styles = {
   }
 };
 
-export default Dashboard;
+export default ParentDashboard;

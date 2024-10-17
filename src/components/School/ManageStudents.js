@@ -1,10 +1,10 @@
 import React from "react";
 
-function History() {
+function ManageStudents() {
   return (
     <div style={styles.container}>
-      <h2>Check History</h2>
-      <p>History will go here.</p>
+      <h2>ManageStudents</h2>
+      <p>ManageStudents will go here.</p>
     </div>
   );
 }
@@ -19,4 +19,4 @@ const styles = {
   }
 };
 
-export default History;
+export default ManageStudents;

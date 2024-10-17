@@ -10,7 +10,7 @@ function Login() {
     e.preventDefault();
     // Normally you'd authenticate here
     if (email && password) {
-      navigate("/dashboard");
+      navigate("/parentdashboard");
     }
   };
 

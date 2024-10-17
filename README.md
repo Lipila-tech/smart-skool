@@ -46,13 +46,23 @@ Make sure you have the following installed:
 
     /src
         ├── components
-        │   ├── Login.js        # Login screen for parents
-        │   ├── Dashboard.js    # Parent dashboard after login
-        │   └── Payment.js      # Payment screen for parents
-            └── History.js      # History screen for parents
-        ├── App.js              # Main app with routing setup
-        ├── index.js            # Entry point for React app
-        └── index.css           # Basic styling for the app
+        │   ├── Parents
+        │   │   ├── Profile.js
+        │   │   ├── ParentDashboard.js
+        │   │   ├── PaymentHistory.js
+        │   │   ├── MakePayment.js
+        │   │   └── StudentProgress.js
+        │   │   └── Communication.js
+        │   ├── School
+        │   │   ├── AdminDashboard.js
+        │   │   ├── PaymentManagement.js
+        │   │   ├── AddStudent.js
+        │   │   ├── ManageStudents.js
+        │   │   ├── Announcements.js
+        │   │   ├── TeacherManagement.js
+        │   │   └── ClassManagement.js
+        └── App.js
+        └── Login.js
 
 
 ## Contributing
