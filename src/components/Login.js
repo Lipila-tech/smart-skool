@@ -24,7 +24,7 @@ const Login = () => {
         localStorage.setItem('userType', 'admin');
         navigate('/admin/dashboard');
       } else {
-        alert('User not found');
+        alert('user parent or admin as email');
       }
     } else {
       alert('Please enter both email and password');
