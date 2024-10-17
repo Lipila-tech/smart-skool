@@ -12,6 +12,7 @@ const Login = () => {
     // test email
     // email=parent or admin password=<any>
 
+    // Authentication logic goes here
     // Check if email and password are provided
     if (email && password) {
       if (email === 'parent') {
