@@ -63,7 +63,7 @@ A dashboard for school admins/teachers to manage students, payments, and view an
 - **Component**: AdminDashboard.js
 - **Purpose**: Overview of student data, pending fees, and announcements.
 
-### View Payments
+### PaymentManagement
 
 A component to display all the payments made by parents, along with filtering options for date range, status (pending, completed).
 
