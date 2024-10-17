@@ -4,7 +4,7 @@ function AdminDashboard() {
   return (
     <div style={styles.container}>
       <h2>Admin Dashboard</h2>
-      <p>AdminDashboard will go here.</p>
+      <p>Admin Dashboard will go here.</p>
     </div>
   );
 }

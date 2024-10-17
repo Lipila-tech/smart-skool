@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { AuthContext } from "./context/AuthContext";
 
 // import  Parent components
 import ParentDashboard from "./components/Parents/ParentDashboard";
@@ -24,8 +23,7 @@ import Announcements from "./components/School/Announcements";
 
 
 function App() {
-  const { user } = useContext(AuthContext);
-
+  
   return (
     <Router>
       <div>

@@ -1,16 +1,32 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Normally you'd authenticate here
+
+    // test email
+    // email=parent or admin password=<any>
+
+    // Check if email and password are provided
     if (email && password) {
-      navigate("/parentdashboard");
+      if (email === 'parent') {
+        // Store user type in localStorage
+        localStorage.setItem('userType', 'parent');
+        navigate('/dashboard');
+      } else if (email === 'admin') {
+        // Store user type in localStorage
+        localStorage.setItem('userType', 'admin');
+        navigate('/admin/dashboard');
+      } else {
+        alert('User not found');
+      }
+    } else {
+      alert('Please enter both email and password');
     }
   };
 
@@ -19,8 +35,8 @@ function Login() {
       <h2>Smart Skool Login</h2>
       <form onSubmit={handleLogin}>
         <input
-          type="email"
-          placeholder="Email"
+          type="text"
+          placeholder="Email (e.g. parent or admin)"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           style={styles.input}
@@ -36,7 +52,7 @@ function Login() {
       </form>
     </div>
   );
-}
+};
 
 const styles = {
   container: {
