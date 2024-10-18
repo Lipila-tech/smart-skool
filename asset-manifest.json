@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/github.io/smart-skool/static/css/main.6813e232.css",
-    "main.js": "/github.io/smart-skool/static/js/main.1cc04a42.js",
+    "main.js": "/github.io/smart-skool/static/js/main.d91e9533.js",
     "static/js/453.9260356f.chunk.js": "/github.io/smart-skool/static/js/453.9260356f.chunk.js",
     "index.html": "/github.io/smart-skool/index.html",
     "main.6813e232.css.map": "/github.io/smart-skool/static/css/main.6813e232.css.map",
-    "main.1cc04a42.js.map": "/github.io/smart-skool/static/js/main.1cc04a42.js.map",
+    "main.d91e9533.js.map": "/github.io/smart-skool/static/js/main.d91e9533.js.map",
     "453.9260356f.chunk.js.map": "/github.io/smart-skool/static/js/453.9260356f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6813e232.css",
-    "static/js/main.1cc04a42.js"
+    "static/js/main.d91e9533.js"
   ]
 }
