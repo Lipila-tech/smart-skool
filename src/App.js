@@ -25,7 +25,7 @@ import Announcements from "./components/School/Announcements";
 function App() {
   
   return (
-    <Router basename="/gh-pages">
+    <Router basename="/smart-skool">
       <div>
         <Routes>
           <Route path="/" element={<Login />} />
