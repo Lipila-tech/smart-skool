@@ -1,5 +1,6 @@
 // src/components/parent/PaymentHistory.js
 import React, { useEffect, useState } from "react";
+import "../css/paymentHistory.css";
 
 function PaymentHistory() {
   const [payments, setPayments] = useState([]);
@@ -13,24 +14,38 @@ function PaymentHistory() {
   }, []);
 
   return (
-    <div style={styles.container}>
-      <h2>Payment History</h2>
-      <table style={styles.table}>
+    <div className="history-container">
+      <h2>History</h2>
+      <p>Here is a record of your recent activities:</p>
+
+      <table className="history-table">
         <thead>
           <tr>
             <th>Date</th>
-            <th>Amount (K)</th>
-            <th>Description</th>
+            <th>Transaction</th>
+            <th>Amount</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          {payments.map(payment => (
-            <tr key={payment.id}>
-              <td>{payment.date}</td>
-              <td>{payment.amount}</td>
-              <td>{payment.description}</td>
-            </tr>
-          ))}
+          <tr>
+            <td>2024-10-10</td>
+            <td>Tuition Payment</td>
+            <td>K500</td>
+            <td>Completed</td>
+          </tr>
+          <tr>
+            <td>2024-09-15</td>
+            <td>Library Fee</td>
+            <td>K80</td>
+            <td>Pending</td>
+          </tr>
+          <tr>
+            <td>2024-08-20</td>
+            <td>Sports Equipment</td>
+            <td>K125</td>
+            <td>Completed</td>
+          </tr>
         </tbody>
       </table>
     </div>
