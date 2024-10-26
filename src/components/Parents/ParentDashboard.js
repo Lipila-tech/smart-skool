@@ -1,20 +1,39 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "../css/parentDashboard.css"; // Import the CSS file for consistent styling
+import { Link, Outlet } from "react-router-dom";
+import "../css/parentDashboard.css"; 
 
 function ParentDashboard() {
   return (
-    <div className="dashboard-container">
-      <h2>Parent Dashboard</h2>
-      <p>Welcome to Smart Skool! What would you like to do today?</p>
-      
-      <Link to="/make-payment">
-        <button className="dashboard-button">Make a Payment</button>
-      </Link>
+    <div className="dashboard-layout">
+      {/* Sidebar */}
+      <aside className="sidebar">
+        <h2>Parent Dashboard</h2>
+        
+        <nav>
+          <ul>
+            <li>
+              <Link to="make-payment">Make a Payment</Link>
+            </li>
+            <li>
+              <Link to="payment-history">Payment History</Link>
+            </li>
+            <li>
+              <Link to="student-progress">Student Progress</Link>
+            </li>
+            <li>
+              <Link to="profile">Profile</Link>
+            </li>
+            <li>
+              <Link to="communication">Communication</Link>
+            </li>
+          </ul>
+        </nav>
+      </aside>
 
-      <Link to="/payment-history">
-        <button className="dashboard-button">Payment History</button>
-      </Link>
+      {/* Main Content Area */}
+      <div className="content-container">
+        <Outlet /> {/* Renders the nested routed content */}
+      </div>
     </div>
   );
 }

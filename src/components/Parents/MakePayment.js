@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/makePayment.css"; // Ensure you have the CSS file for consistent styling
+import "../css/makePayment.css";
 
 function MakePayment() {
   const [amount, setAmount] = useState("");

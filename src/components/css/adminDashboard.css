@@ -1,68 +1,54 @@
-/* Admin Dashboard container styling */
-.admin-dashboard-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f4f8;
-    padding: 20px;
-  }
-  
-  .admin-dashboard-container h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .admin-dashboard-container p {
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 30px;
-  }
-  
-  /* Button styling */
-  .admin-dashboard-button {
-    padding: 15px 30px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    margin-bottom: 15px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .admin-dashboard-button:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
-  }
-  
-  .admin-dashboard-button:active {
-    transform: translateY(0);
-  }
-  
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .admin-dashboard-button {
-      padding: 10px 20px;
-      font-size: 1rem;
-    }
-  
-    .admin-dashboard-container h2 {
-      font-size: 1.5rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .admin-dashboard-button {
-      width: 100%;
-      max-width: 300px;
-    }
-  
-    .admin-dashboard-container h2 {
-      font-size: 1.3rem;
-    }
-  }
-  
+/* src/css/adminDashboard.css */
+
+.dashboard-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.sidebar nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav ul li {
+  margin: 10px 0;
+}
+
+.sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar nav ul li a:hover {
+  background-color: #34495e;
+  border-radius: 4px;
+}
+
+.content-container {
+  flex-grow: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f4f6f8;
+  overflow-y: auto;
+}
