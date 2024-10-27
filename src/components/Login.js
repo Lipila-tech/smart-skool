@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import "./css/login.css";
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -32,7 +34,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container" style={styles.container}>
+    <div className="login-container">
       <h2>Smart Skool Login</h2>
       <form onSubmit={handleLogin}>
         <input
@@ -40,42 +42,20 @@ const Login = () => {
           placeholder="Email (e.g. parent or admin)"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          style={styles.input}
+          className="login-input"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          style={styles.input}
+          className="login-input"
         />
-        <button type="submit" style={styles.button}>Login</button>
+        <button type="submit" className="login-button">Login</button>
       </form>
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
-};
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh'
-  },
-  input: {
-    margin: '10px 0',
-    padding: '10px',
-    width: '100%',
-    maxWidth: '300px'
-  },
-  button: {
-    padding: '10px 20px',
-    backgroundColor: '#4CAF50',
-    color: 'white',
-    border: 'none',
-    cursor: 'pointer'
-  }
-};
+}
 
 export default Login;

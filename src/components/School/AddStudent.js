@@ -1,5 +1,5 @@
-// src/components/admin/AddStudent.js
 import React, { useState } from "react";
+import "../css/addStudent.css"; 
 
 function AddStudent() {
   const [form, setForm] = useState({
@@ -25,27 +25,27 @@ function AddStudent() {
       },
       body: JSON.stringify(form),
     })
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to add student");
         }
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         alert("Student added successfully!");
         setForm({ name: "", age: "", class: "", parentEmail: "" });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error adding student:", error);
         alert("There was an error adding the student.");
       });
   };
 
   return (
-    <div style={styles.container}>
+    <div className="add-student-container">
       <h2>Add New Student</h2>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <label>
+      <form onSubmit={handleSubmit} className="add-student-form">
+        <label className="form-label">
           Name:
           <input
             type="text"
@@ -53,10 +53,10 @@ function AddStudent() {
             value={form.name}
             onChange={handleChange}
             required
-            style={styles.input}
+            className="form-input"
           />
         </label>
-        <label>
+        <label className="form-label">
           Age:
           <input
             type="number"
@@ -64,10 +64,10 @@ function AddStudent() {
             value={form.age}
             onChange={handleChange}
             required
-            style={styles.input}
+            className="form-input"
           />
         </label>
-        <label>
+        <label className="form-label">
           Class:
           <input
             type="text"
@@ -75,10 +75,10 @@ function AddStudent() {
             value={form.class}
             onChange={handleChange}
             required
-            style={styles.input}
+            className="form-input"
           />
         </label>
-        <label>
+        <label className="form-label">
           Parent Email:
           <input
             type="email"
@@ -86,35 +86,13 @@ function AddStudent() {
             value={form.parentEmail}
             onChange={handleChange}
             required
-            style={styles.input}
+            className="form-input"
           />
         </label>
-        <button type="submit" style={styles.button}>Add Student</button>
+        <button type="submit" className="form-button">Add Student</button>
       </form>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    padding: "20px",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    maxWidth: "400px",
-  },
-  input: {
-    margin: "5px 0 15px 0",
-    padding: "8px",
-  },
-  button: {
-    padding: "10px 20px",
-    backgroundColor: "#4CAF50",
-    color: "white",
-    border: "none",
-    cursor: "pointer",
-  },
-};
 
 export default AddStudent;

@@ -1,38 +1,33 @@
+// src/components/School/AdminDashboard.js
+
 import React from "react";
 import { Link } from "react-router-dom";
+import "../css/adminDashboard.css";
 
 function AdminDashboard() {
   return (
-    <div style={styles.container}>
-      <h2>Admin Dashboard</h2>
-      <p>Welcome to Smart Skool! What would you like to do today?</p>
-      <Link to="/admin/add-student">
-        <button style={styles.button}>Add Student</button>
-      </Link>
+    <div className="dashboard-layout">
+      {/* Sidebar for navigation */}
+      <div className="sidebar">
+        <h2>Admin Dashboard</h2>
+        <nav>
+          <ul>
+            <li><Link to="/admin/add-student">Add Student</Link></li>
+            <li><Link to="/admin/manage-students">Manage Students</Link></li>
+            <li><Link to="/admin/teacher-management">Manage Teachers</Link></li>
+            <li><Link to="/admin/payment-management">Payment Management</Link></li>
+            <li><Link to="/admin/announcements">Announcements</Link></li>
+            <li><Link to="/admin/class-management">Class Management</Link></li>
+          </ul>
+        </nav>
+      </div>
 
-      <Link to="/admin/manage-students">
-        <button style={styles.button}>Manage students</button>
-      </Link>
+      {/* Main content area */}
+      <div className="content-container">
+        <p>Welcome to the Smart Skool Admin Dashboard! Select an option from the menu to get started.</p>
+      </div>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh'
-  },
-  button: {
-    padding: '10px 20px',
-    backgroundColor: '#4CAF50',
-    color: 'white',
-    border: 'none',
-    cursor: 'pointer',
-    marginBottom: '10px'
-  }
-};
 
 export default AdminDashboard;
