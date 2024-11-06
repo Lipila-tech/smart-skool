@@ -10,26 +10,32 @@ function MakePayment() {
   const [momoNumber, setMomoNumber] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showLoanTerms, setShowLoanTerms] = useState(false);
-  const [paymentStatus, setPaymentStatus] = useState(""); // Track payment status
+  const [paymentStatus, setPaymentStatus] = useState("");
   const [reminderMessage, setReminderMessage] = useState("");
+  const [students, setStudents] = useState([
+    { id: 1, name: "Wilson Chisenga", outstandingFees: 500 },
+    { id: 2, name: "Barnabas Mwaipaya", outstandingFees: 400 },
+    { id: 3, name: "Kombe Mwape", outstandingFees: 300 }
+  ]);
+  const [selectedStudents, setSelectedStudents] = useState([]);
+  const [totalAmountDue, setTotalAmountDue] = useState(0);
 
   useEffect(() => {
-    // Reminder logic if payment status is pending
     if (paymentStatus === "pending") {
       const reminderInterval = setInterval(() => {
         setReminderMessage("Reminder: Your loan payment is still pending.");
-      }, 10000); // Every 10 seconds
+      }, 10000);
 
-      return () => clearInterval(reminderInterval); // Cleanup on unmount
+      return () => clearInterval(reminderInterval);
     }
   }, [paymentStatus]);
 
   const handlePayment = (e) => {
     e.preventDefault();
     if (paymentMethod === "LearnNow PayLater") {
-      setShowLoanTerms(true); // Show loan terms if "LearnNow PayLater" is selected
+      setShowLoanTerms(true);
     } else {
-      setIsConfirming(true); // Move to confirmation for other methods
+      setIsConfirming(true);
     }
   };
 
@@ -40,17 +46,42 @@ function MakePayment() {
     setShowLoanTerms(false);
     setPaymentStatus("");
     setReminderMessage("");
+    setSelectedStudents([]);
+    setTotalAmountDue(0);
   };
 
   const handleConfirmation = (e) => {
     e.preventDefault();
     if (paymentMethod === "MTN Momo" || paymentMethod === "Airtel Money") {
-      setShowModal(true); // Show modal for Mobile Money confirmation
+      setShowModal(true);
     } else {
       alert("Loan application submitted! Await confirmation.");
-      setPaymentStatus("pending"); // Set status to pending for loan payment
+      setPaymentStatus("pending");
     }
   };
+
+  const handleStudentSelection = (student) => {
+    const updatedSelection = selectedStudents.includes(student.id)
+      ? selectedStudents.filter((id) => id !== student.id)
+      : [...selectedStudents, student.id];
+
+    setSelectedStudents(updatedSelection);
+
+    const total = students
+      .filter((student) => updatedSelection.includes(student.id))
+      .reduce((sum, student) => sum + student.outstandingFees, 0);
+
+    setTotalAmountDue(total);
+  };
+
+  const handleAmountChange = (e) => {
+    const value = e.target.value;
+    if (value <= totalAmountDue) {
+      setAmount(value);
+    }
+  };
+
+  const isContinueDisabled = selectedStudents.length === 0 || !amount;
 
   const closeModal = () => setShowModal(false);
 
@@ -59,27 +90,59 @@ function MakePayment() {
       <h2>Make a Payment</h2>
 
       {!isConfirming && !showLoanTerms ? (
-        <form onSubmit={handlePayment} className="payment-form">
-          <input
-            type="number"
-            placeholder="Enter Amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="payment-input"
-            required
-          />
-          <select
-            value={paymentMethod}
-            onChange={(e) => setPaymentMethod(e.target.value)}
-            className="payment-select"
-            required
-          >
-            <option value="MTN Momo">MTN Momo</option>
-            <option value="Airtel Money">Airtel Money</option>
-            <option value="LearnNow PayLater">LearnNow PayLater</option>
-          </select>
-          <button type="submit" className="payment-button">Proceed</button>
-        </form>
+        <>
+          <div className="student-selection">
+            <h3>Select Students</h3>
+            <table className="student-table">
+              <thead>
+                <tr>
+                  <th>Select</th>
+                  <th>Student Name</th>
+                  <th>Outstanding Fee</th>
+                </tr>
+              </thead>
+              <tbody>
+                {students.map((student) => (
+                  <tr key={student.id}>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={selectedStudents.includes(student.id)}
+                        onChange={() => handleStudentSelection(student)}
+                      />
+                    </td>
+                    <td>{student.name}</td>
+                    <td>K{student.outstandingFees}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p className="total-amount">Total Amount Due: K{totalAmountDue}</p>
+          </div>
+          <form onSubmit={handlePayment} className="payment-form">
+            <input
+              type="number"
+              placeholder="Enter Amount to Pay"
+              value={amount}
+              onChange={handleAmountChange}
+              className="payment-input"
+              required
+            />
+            <select
+              value={paymentMethod}
+              onChange={(e) => setPaymentMethod(e.target.value)}
+              className="payment-select"
+              required
+            >
+              <option value="MTN Momo">MTN Momo</option>
+              <option value="Airtel Money">Airtel Money</option>
+              <option value="LearnNow PayLater">LearnNow PayLater</option>
+            </select>
+            <button type="submit" className="payment-button" disabled={isContinueDisabled}>
+              Continue
+            </button>
+          </form>
+        </>
       ) : showLoanTerms ? (
         <div className="loan-terms">
           <h3>LearnNow PayLater Terms</h3>
@@ -96,7 +159,7 @@ function MakePayment() {
           <h3>Confirm Payment Details</h3>
           <p>Amount: <span className="highlight">{amount}</span></p>
           <p>Payment Method: <span className="highlight">{paymentMethod}</span></p>
-          {paymentMethod === "MTN Momo" || paymentMethod === "Airtel Money" ? (
+          {(paymentMethod === "MTN Momo" || paymentMethod === "Airtel Money") && (
             <input
               type="tel"
               placeholder="Enter MoMo Number"
@@ -105,7 +168,7 @@ function MakePayment() {
               className="payment-input"
               required
             />
-          ) : null}
+          )}
           <div className="button-group">
             <button type="button" onClick={handleBack} className="back-button">Back</button>
             <button type="submit" className="payment-button">Confirm Payment</button>
