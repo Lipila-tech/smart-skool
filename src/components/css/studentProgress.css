@@ -1,35 +1,36 @@
 /* src/css/StudentProgress.css */
 
 .student-progress-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: #f9f9f9;
-    height: 100vh;
-  }
-  
-  .student-progress-section {
-    width: 80%;
-    margin-bottom: 30px;
-  }
-  
-  .student-progress-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  .student-progress-table th,
-  .student-progress-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  .student-progress-table th {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0; /* Remove any extra padding */
+  margin: 0;
+  background-color: #f9f9f9;
+  height: 100vh;
+}
+
+.student-progress-section {
+  width: 80%;
+  margin-bottom: 30px;
+  padding-top: 20px; /* Optional: add top padding if needed */
+}
+
+.student-progress-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.student-progress-table th,
+.student-progress-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.student-progress-table th {
+  background-color: #4CAF50;
+  color: white;
+}
