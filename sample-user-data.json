@@ -1,0 +1,60 @@
+{
+    "users": [
+      {
+        "id": "U001",
+        "username": "parent_john",
+        "password": "securepassword123",
+        "role": "parent",
+        "email": "john.doe@example.com",
+        "phone": "+260123456789",
+        "students": [
+          {
+            "id": "S1001",
+            "name": "Jane Doe",
+            "class": "Grade 6"
+          },
+          {
+            "id": "S1002",
+            "name": "Jack Doe",
+            "class": "Grade 3"
+          }
+        ]
+      },
+      {
+        "id": "U002",
+        "username": "parent_jane",
+        "password": "mypassword456",
+        "role": "parent",
+        "email": "jane.smith@example.com",
+        "phone": "+260987654321",
+        "students": [
+          {
+            "id": "S1003",
+            "name": "Ella Smith",
+            "class": "Grade 5"
+          }
+        ]
+      },
+      {
+        "id": "U003",
+        "username": "admin_smartskool",
+        "password": "adminsecurepass",
+        "role": "admin",
+        "email": "admin@smartskool.example.com",
+        "phone": "+260555555555",
+        "institution_id": "123456",
+        "institution_name": "Smart Skool Institution"
+      },
+      {
+        "id": "U004",
+        "username": "admin_highschool",
+        "password": "adminpass789",
+        "role": "admin",
+        "email": "admin2@smartskool.example.com",
+        "phone": "+260666666666",
+        "institution_id": "654321",
+        "institution_name": "Smart High School"
+      }
+    ]
+  }
+  
