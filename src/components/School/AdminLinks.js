@@ -23,6 +23,9 @@ const AdminLinks = () => {
         <li>
           <Link to="/admin/dashboard/announcements">Announcements</Link>
         </li>
+        <li>
+          <Link to="logout">Logout</Link>
+        </li>
       </ul>
     </nav>
   );

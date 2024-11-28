@@ -20,6 +20,9 @@ const ParentLinks = () => {
                 <li>
                     <Link to="communication">Communication</Link>
                 </li>
+                <li>
+                    <Link to="logout">Logout</Link>
+                </li>
             </ul>
         </nav>
     );

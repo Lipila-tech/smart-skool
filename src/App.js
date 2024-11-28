@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
-
+import Logout
+ from "./components/logout";
 // Import Parent Components
 import ParentDashboard from "./components/Parents/ParentDashboard";
 import PaymentHistory from "./components/Parents/PaymentHistory";
@@ -20,12 +21,14 @@ import TeacherManagement from "./components/School/TeacherManagement";
 import ClassManagement from "./components/School/ClassManagement";
 import Announcements from "./components/School/Announcements";
 
+
 function App() {
   return (
     <Router>
       <div>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="logout" element={<Logout />} />
 
           {/* Parent Dashboard with Nested Routes */}
           <Route
@@ -42,6 +45,7 @@ function App() {
             <Route path="student-progress" element={<StudentProgress />} />
             <Route path="profile" element={<Profile />} />
             <Route path="communication" element={<Communication />} />
+            <Route path="logout" element={<Logout/>}/>
           </Route>
 
           {/* Admin Dashboard with Nested Routes */}
@@ -60,6 +64,7 @@ function App() {
             <Route path="teacher-management" element={<TeacherManagement />} />
             <Route path="class-management" element={<ClassManagement />} />
             <Route path="announcements" element={<Announcements />} />
+            <Route path="logout" element={<Logout/>}/>
           </Route>
 
           {/* Redirect unknown routes */}
