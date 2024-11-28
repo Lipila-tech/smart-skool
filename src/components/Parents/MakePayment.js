@@ -120,24 +120,32 @@ function MakePayment() {
             <p className="total-amount">Total Amount Due: K{totalAmountDue}</p>
           </div>
           <form onSubmit={handlePayment} className="payment-form">
-            <input
-              type="number"
-              placeholder="Enter Amount to Pay"
-              value={amount}
-              onChange={handleAmountChange}
-              className="payment-input"
-              required
-            />
-            <select
-              value={paymentMethod}
-              onChange={(e) => setPaymentMethod(e.target.value)}
-              className="payment-select"
-              required
-            >
-              <option value="MTN Momo">MTN Momo</option>
-              <option value="Airtel Money">Airtel Money</option>
-              <option value="LearnNow PayLater">LearnNow PayLater</option>
-            </select>
+            <lable>Enter amount to pay:
+              <input
+                type="number"
+                placeholder="Enter Amount to Pay"
+                value={amount}
+                onChange={handleAmountChange}
+                className="payment-input"
+                required
+              />
+
+            </lable>
+
+            <label>Select Payment Method:
+              <select
+                value={paymentMethod}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+                className="payment-select"
+                required
+              >
+                <option value="MTN Momo">MTN Momo</option>
+                <option value="Airtel Money">Airtel Money</option>
+                <option value="LearnNow PayLater">LearnNow PayLater</option>
+              </select>
+
+            </label>
+
             <button type="submit" className="payment-button" disabled={isContinueDisabled}>
               Continue
             </button>
