@@ -3,11 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Logout
-<<<<<<< HEAD
-  from "./components/logout";
-=======
  from "./components/logout";
->>>>>>> c13e98f (Add logout component)
 // Import Parent Components
 import ParentDashboard from "./components/Parents/ParentDashboard";
 import PaymentHistory from "./components/Parents/PaymentHistory";
@@ -53,11 +49,7 @@ function App() {
             <Route path="student-progress" element={<StudentProgress />} />
             <Route path="profile" element={<Profile />} />
             <Route path="communication" element={<Communication />} />
-<<<<<<< HEAD
-            <Route path="logout" element={<Logout />} />
-=======
             <Route path="logout" element={<Logout/>}/>
->>>>>>> c13e98f (Add logout component)
           </Route>
 
           {/* Admin Dashboard with Nested Routes */}
@@ -77,11 +69,7 @@ function App() {
             <Route path="teacher-management" element={<TeacherManagement />} />
             <Route path="class-management" element={<ClassManagement schoolId={schoolId}/>} />
             <Route path="announcements" element={<Announcements />} />
-<<<<<<< HEAD
-            <Route path="logout" element={<Logout />} />
-=======
             <Route path="logout" element={<Logout/>}/>
->>>>>>> c13e98f (Add logout component)
           </Route>
 
           {/* Redirect unknown routes */}
