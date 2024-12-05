@@ -1,4 +1,4 @@
-/* Container styling */
+/* Login container styling */
 .login-container {
   display: flex;
   flex-direction: column;
@@ -15,11 +15,10 @@
   margin-bottom: 20px;
 }
 
-/* Form styling */
-form {
+/* Form container */
+.form-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 100%;
   max-width: 400px;
@@ -29,7 +28,7 @@ form {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Form inputs */
+/* Input styling */
 .login-input {
   width: 100%;
   padding: 15px;
