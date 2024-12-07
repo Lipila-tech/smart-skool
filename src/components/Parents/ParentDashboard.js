@@ -1,14 +1,21 @@
 import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/parentDashboard.css";
 
 function ParentDashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const navigate = useNavigate(); // For navigation after logout
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const handleLogout = () => {
+    // Add logout logic here, e.g., clearing tokens or user data
+    console.log("User logged out");
+    navigate("/login"); // Redirect to the login page
   };
 
   return (
@@ -40,6 +47,10 @@ function ParentDashboard() {
             </li>
           </ul>
         </nav>
+        {/* Logout Button */}
+        <button className="logout-button" onClick={handleLogout}>
+          Logout
+        </button>
       </aside>
 
       {/* Main Content Area */}
