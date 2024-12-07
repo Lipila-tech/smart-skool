@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import "../css/parentDashboard.css"; 
+import { FaBars } from "react-icons/fa";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../css/parentDashboard.css";
 
 function ParentDashboard() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="dashboard-layout">
+      {/* Toggle Button */}
+      <button className="toggle-button" onClick={toggleSidebar}>
+        <FaBars />
+      </button>
+
       {/* Sidebar */}
-      <aside className="sidebar">
+      <aside className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <h2>Parent Dashboard</h2>
-        
         <nav>
           <ul>
             <li>
@@ -32,7 +44,7 @@ function ParentDashboard() {
 
       {/* Main Content Area */}
       <div className="content-container">
-        <Outlet /> {/* Renders the nested routed content */}
+        <Outlet />
       </div>
     </div>
   );

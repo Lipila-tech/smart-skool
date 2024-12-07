@@ -41,7 +41,7 @@ function Profile() {
         return (
           <div className="tab-content">
             <h3>Payment Information</h3>
-            <p>Outstanding Balance: k2000</p>
+            <p>Outstanding Balance: K2000</p>
             <p>Saved Payment Methods: Visa ****1234</p>
           </div>
         );
@@ -95,16 +95,26 @@ function Profile() {
         <h2>Parent Profile</h2>
       </div>
       <div className="tabs">
-        <button onClick={() => setActiveTab("overview")}>Overview</button>
-        <button onClick={() => setActiveTab("contact")}>Contact Info</button>
-        <button onClick={() => setActiveTab("recentActivity")}>Recent Activity</button>
-        <button onClick={() => setActiveTab("enrollment")}>Enrollment Details</button>
-        <button onClick={() => setActiveTab("paymentInfo")}>Payment Info</button>
-        <button onClick={() => setActiveTab("attendance")}>Attendance</button>
-        <button onClick={() => setActiveTab("settings")}>Settings</button>
-        <button onClick={() => setActiveTab("achievements")}>Achievements</button>
-        <button onClick={() => setActiveTab("communication")}>Communication</button>
-        <button onClick={() => setActiveTab("feedback")}>Feedback</button>
+        {[
+          { key: "overview", label: "Overview" },
+          { key: "contact", label: "Contact Info" },
+          { key: "recentActivity", label: "Recent Activity" },
+          { key: "enrollment", label: "Enrollment Details" },
+          { key: "paymentInfo", label: "Payment Info" },
+          { key: "attendance", label: "Attendance" },
+          { key: "settings", label: "Settings" },
+          { key: "achievements", label: "Achievements" },
+          { key: "communication", label: "Communication" },
+          { key: "feedback", label: "Feedback" },
+        ].map((tab) => (
+          <button
+            key={tab.key}
+            className={activeTab === tab.key ? "active" : ""}
+            onClick={() => setActiveTab(tab.key)}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
       <div className="tab-content-container">{renderContent()}</div>
     </div>

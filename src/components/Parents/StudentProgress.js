@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "../css/tableStyles.css";
 import "../css/studentProgress.css";
 
 function StudentProgress() {
@@ -18,46 +20,60 @@ function StudentProgress() {
     <div className="student-progress-container">
       <h2>Student Progress</h2>
 
+      {/* Report Cards Section */}
       <div className="student-progress-section">
         <h3>Report Cards</h3>
-        <table className="student-progress-table">
-          <thead>
-            <tr>
-              <th>Subject</th>
-              <th>Grade</th>
-              <th>Comments</th>
-            </tr>
-          </thead>
-          <tbody>
-            {reportCards.map((report, index) => (
-              <tr key={index}>
-                <td>{report.subject}</td>
-                <td>{report.grade}</td>
-                <td>{report.comments}</td>
+        <div className="table-responsive">
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Grade</th>
+                <th>Comments</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {reportCards.map((report, index) => (
+                <tr key={index}>
+                  <td>{report.subject}</td>
+                  <td>{report.grade}</td>
+                  <td>{report.comments}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
+      {/* Attendance Section */}
       <div className="student-progress-section">
         <h3>Attendance</h3>
-        <table className="student-progress-table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {attendance.map((record, index) => (
-              <tr key={index}>
-                <td>{record.date}</td>
-                <td>{record.status}</td>
+        <div className="table-responsive">
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Status</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {attendance.map((record, index) => (
+                <tr key={index}>
+                  <td>{record.date}</td>
+                  <td>
+                    <span
+                      className={`status-badge ${
+                        record.status.toLowerCase() // Use lowercase for consistent class naming
+                      }`}
+                    >
+                      {record.status}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

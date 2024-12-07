@@ -1,17 +1,15 @@
-/* src/css/profile.css */
-
+/* General Container */
 .profile-container {
-  padding: 0; /* Remove top padding */
-  margin: 0 auto; /* Center container without extra space */
-  max-width: 800px;
+  margin: 0 auto;
+  max-width: 900px;
   font-family: Arial, sans-serif;
+  padding: 20px;
 }
 
 .profile-header {
   display: flex;
   align-items: center;
-  padding: 20px; /* Add padding directly to specific sections if needed */
-  margin: 0; /* Remove margin */
+  padding: 20px 0;
 }
 
 .profile-pic {
@@ -27,29 +25,35 @@
   margin-right: 15px;
 }
 
+/* Tabs */
 .tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin: 0; /* Remove margin at the top */
-  padding: 20px 0; /* Optional: add spacing directly within the component */
+  margin-bottom: 20px;
 }
 
 .tabs button {
   background-color: #4CAF50;
   color: white;
   border: none;
-  padding: 10px;
+  padding: 10px 20px;
+  border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .tabs button:hover {
   background-color: #45a049;
 }
 
+.tabs button.active {
+  background-color: #3a9340;
+  transform: scale(1.05);
+}
+
+/* Content Section */
 .tab-content-container {
   background: #f9f9f9;
   padding: 20px;
@@ -59,5 +63,9 @@
 
 .tab-content h3 {
   color: #333;
-  margin: 0 0 10px 0;
+  margin: 0 0 10px;
+}
+
+.tab-content p {
+  margin: 0 0 10px;
 }

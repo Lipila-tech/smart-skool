@@ -1,6 +1,6 @@
-// src/components/Parents/MakePayment.js
-
 import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../css/tableStyles.css";
 import "../css/makePayment.css";
 
 function MakePayment() {
@@ -15,7 +15,7 @@ function MakePayment() {
   const [students, setStudents] = useState([
     { id: 1, name: "Wilson Chisenga", outstandingFees: 500 },
     { id: 2, name: "Barnabas Mwaipaya", outstandingFees: 400 },
-    { id: 3, name: "Kombe Mwape", outstandingFees: 300 }
+    { id: 3, name: "Kombe Mwape", outstandingFees: 300 },
   ]);
   const [selectedStudents, setSelectedStudents] = useState([]);
   const [totalAmountDue, setTotalAmountDue] = useState(0);
@@ -29,36 +29,6 @@ function MakePayment() {
       return () => clearInterval(reminderInterval);
     }
   }, [paymentStatus]);
-
-  const handlePayment = (e) => {
-    e.preventDefault();
-    if (paymentMethod === "LearnNow PayLater") {
-      setShowLoanTerms(true);
-    } else {
-      setIsConfirming(true);
-    }
-  };
-
-  const handleBack = () => {
-    setIsConfirming(false);
-    setAmount("");
-    setPaymentMethod("MTN Momo");
-    setShowLoanTerms(false);
-    setPaymentStatus("");
-    setReminderMessage("");
-    setSelectedStudents([]);
-    setTotalAmountDue(0);
-  };
-
-  const handleConfirmation = (e) => {
-    e.preventDefault();
-    if (paymentMethod === "MTN Momo" || paymentMethod === "Airtel Money") {
-      setShowModal(true);
-    } else {
-      alert("Loan application submitted! Await confirmation.");
-      setPaymentStatus("pending");
-    }
-  };
 
   const handleStudentSelection = (student) => {
     const updatedSelection = selectedStudents.includes(student.id)
@@ -74,10 +44,32 @@ function MakePayment() {
     setTotalAmountDue(total);
   };
 
-  const handleAmountChange = (e) => {
-    const value = e.target.value;
-    if (value <= totalAmountDue) {
-      setAmount(value);
+  const handlePayment = (e) => {
+    e.preventDefault();
+    if (paymentMethod === "LearnNow PayLater") {
+      setShowLoanTerms(true);
+    } else {
+      setIsConfirming(true);
+    }
+  };
+
+  const handleBack = () => {
+    setIsConfirming(false);
+    setShowLoanTerms(false);
+    setSelectedStudents([]);
+    setAmount("");
+    setTotalAmountDue(0);
+    setPaymentStatus("");
+    setReminderMessage("");
+  };
+
+  const handleConfirmation = (e) => {
+    e.preventDefault();
+    if (paymentMethod === "MTN Momo" || paymentMethod === "Airtel Money") {
+      setShowModal(true);
+    } else {
+      alert("Loan application submitted! Await confirmation.");
+      setPaymentStatus("pending");
     }
   };
 
@@ -93,30 +85,32 @@ function MakePayment() {
         <>
           <div className="student-selection">
             <h3>Select Students</h3>
-            <table className="student-table">
-              <thead>
-                <tr>
-                  <th>Select</th>
-                  <th>Student Name</th>
-                  <th>Outstanding Fee</th>
-                </tr>
-              </thead>
-              <tbody>
-                {students.map((student) => (
-                  <tr key={student.id}>
-                    <td>
-                      <input
-                        type="checkbox"
-                        checked={selectedStudents.includes(student.id)}
-                        onChange={() => handleStudentSelection(student)}
-                      />
-                    </td>
-                    <td>{student.name}</td>
-                    <td>K{student.outstandingFees}</td>
+            <div className="table-responsive">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Select</th>
+                    <th>Student Name</th>
+                    <th>Outstanding Fee</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {students.map((student) => (
+                    <tr key={student.id}>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={selectedStudents.includes(student.id)}
+                          onChange={() => handleStudentSelection(student)}
+                        />
+                      </td>
+                      <td>{student.name}</td>
+                      <td>K{student.outstandingFees}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <p className="total-amount">Total Amount Due: K{totalAmountDue}</p>
           </div>
           <form onSubmit={handlePayment} className="payment-form">
@@ -124,7 +118,7 @@ function MakePayment() {
               type="number"
               placeholder="Enter Amount to Pay"
               value={amount}
-              onChange={handleAmountChange}
+              onChange={(e) => setAmount(e.target.value)}
               className="payment-input"
               required
             />
@@ -150,7 +144,7 @@ function MakePayment() {
           <p>Repayment Period: 6 months</p>
           <p>Confirm to proceed with the loan registration.</p>
           <div className="button-group">
-            <button type="button" onClick={handleBack} className="back-button">Back</button>
+            <button onClick={handleBack} className="back-button">Back</button>
             <button onClick={() => setIsConfirming(true)} className="payment-button">Accept Terms</button>
           </div>
         </div>
@@ -170,7 +164,7 @@ function MakePayment() {
             />
           )}
           <div className="button-group">
-            <button type="button" onClick={handleBack} className="back-button">Back</button>
+            <button onClick={handleBack} className="back-button">Back</button>
             <button type="submit" className="payment-button">Confirm Payment</button>
           </div>
         </form>
@@ -188,7 +182,9 @@ function MakePayment() {
 
       {paymentStatus === "pending" && (
         <div className="payment-status">
-          <p>Payment Status: <span className="status-highlight">{paymentStatus}</span></p>
+          <p>
+            Payment Status: <span className="status-highlight">{paymentStatus}</span>
+          </p>
           {reminderMessage && <p className="reminder-message">{reminderMessage}</p>}
         </div>
       )}

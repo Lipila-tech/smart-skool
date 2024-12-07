@@ -1,26 +1,6 @@
-/* paymentHistory.css */
-
-.history-container {
-  padding: 0;
-  margin: 0;
-  text-align: left;
-  background-color: #f8f9fa;
-}
-
-.history-container h2 {
-  margin: 0; /* Remove margin to avoid space above the heading */
-  padding: 16px; /* Add padding if spacing around the text is needed */
-}
-
-.history-container p {
-  margin: 16px 0;
-  padding: 0 16px;
-}
-
 .history-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 16px;
+  width: 100%; /* Ensure the table takes the full width of the container */
+  border-collapse: collapse; /* Remove gaps between table cells */
 }
 
 .history-table th,
@@ -37,4 +17,23 @@
 
 .history-table tr:nth-child(even) {
   background-color: #f2f2f2;
+}
+
+/* Optional: Status Badge Styling */
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.status-badge.completed {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.status-badge.pending {
+  background-color: #FFC107;
+  color: #333;
 }

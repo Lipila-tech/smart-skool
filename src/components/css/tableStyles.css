@@ -1,0 +1,72 @@
+/* General Table Styling */
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Enables horizontal scrolling for smaller screens */
+    margin: 20px 0;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .table th,
+  .table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .table td {
+    background-color: #fafafa;
+    color: #333;
+  }
+  
+  .table tbody tr:nth-child(even) td {
+    background-color: #f4f4f4;
+  }
+  
+  /* Status Badges */
+  .status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .status-badge.completed {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .status-badge.pending {
+    background-color: #FFA500;
+    color: white;
+  }
+  
+  .status-badge.failed {
+    background-color: #d9534f;
+    color: white;
+  }
+  
+  /* Responsive Table */
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  /* Highlighted Rows */
+  .table tbody tr:hover {
+    background-color: #eaf8e6;
+  }
+  
