@@ -1,30 +1,63 @@
 // src/components/School/AdminDashboard.js
 
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { FaBars } from "react-icons/fa";
 import "../css/adminDashboard.css";
 
 function AdminDashboard() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const navigate = useNavigate(); // For navigation after logout
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const handleLogout = () => {
+    console.log("Admin logged out");
+    navigate("/login"); // Redirect to the login page
+  };
+
   return (
     <div className="dashboard-layout">
-      {/* Sidebar for navigation */}
-      <div className="sidebar">
+      {/* Toggle Button */}
+      <button className="toggle-button" onClick={toggleSidebar}>
+        <FaBars />
+      </button>
+
+      {/* Sidebar */}
+      <aside className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <h2>Admin Dashboard</h2>
         <nav>
           <ul>
-            <li><Link to="/admin/add-student">Add Student</Link></li>
-            <li><Link to="/admin/manage-students">Manage Students</Link></li>
-            <li><Link to="/admin/teacher-management">Manage Teachers</Link></li>
-            <li><Link to="/admin/payment-management">Payment Management</Link></li>
-            <li><Link to="/admin/announcements">Announcements</Link></li>
-            <li><Link to="/admin/class-management">Class Management</Link></li>
+            <li>
+              <Link to="add-student">Add Student</Link>
+            </li>
+            <li>
+              <Link to="manage-students">Manage Students</Link>
+            </li>
+            <li>
+              <Link to="teacher-management">Manage Teachers</Link>
+            </li>
+            <li>
+              <Link to="payment-management">Payment Management</Link>
+            </li>
+            <li>
+              <Link to="announcements">Announcements</Link>
+            </li>
+            <li>
+              <Link to="class-management">Class Management</Link>
+            </li>
           </ul>
         </nav>
-      </div>
+        <button className="logout-button" onClick={handleLogout}>
+          Logout
+        </button>
+      </aside>
 
-      {/* Main content area */}
+      {/* Main Content Area */}
       <div className="content-container">
-        <p>Welcome to the Smart Skool Admin Dashboard! Select an option from the menu to get started.</p>
+        <Outlet />
       </div>
     </div>
   );
