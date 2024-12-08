@@ -1,0 +1,18 @@
+{
+    "users": [
+      {
+        "username": "parent1",
+        "email": "parent",
+        "password": "parent123",
+        "type": "parent"
+      },
+      {
+        "username": "admin1",
+        "email": "admin",
+        "password": "admin123",
+        "type": "admin"
+      }
+    ]
+  }
+
+  

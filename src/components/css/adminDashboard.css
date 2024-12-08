@@ -43,6 +43,22 @@
   color: #1abc9c; /* Link hover color */
 }
 
+/* Username and Logout Container */
+.user-logout-container {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Spacing between username and logout button */
+}
+
+.username-display {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ecf0f1; /* Light gray color for username */
+  text-align: center;
+}
+
 .logout-button {
   background-color: #e74c3c;
   color: white;
@@ -51,8 +67,6 @@
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
-  margin-top: auto;
-  align-self: center;
   width: 100%;
   text-align: center;
   transition: background-color 0.3s ease;
