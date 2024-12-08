@@ -12,7 +12,7 @@ import MakePayment from "./components/Parents/MakePayment";
 import Profile from "./components/Parents/Profile";
 import Communication from "./components/Parents/Communication";
 
-// Import Admin Components
+// Import School Admin Components
 import AdminDashboard from "./components/School/AdminDashboard";
 import PaymentManagement from "./components/School/PaymentManagement";
 import AddStudent from "./components/School/AddStudent";
