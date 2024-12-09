@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./css/login.css";
+import axios from 'axios';
+
 
 const Login = () => {
   const [parentEmail, setParentEmail] = useState('');
@@ -11,19 +13,50 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleParentLogin = (e) => {
+  const handleRootLogin = async (e) => {
     e.preventDefault();
 
-    // Parent login logic
-    if (parentEmail && parentPassword) {
-      if (parentEmail === 'parent') {
-        localStorage.setItem('userType', 'parent');
-        navigate('/dashboard');
-      } else {
-        alert('Use "parent" as email for Parent login');
-      }
-    } else {
+    // Ensure both fields are filled
+    if (!parentEmail || !parentPassword) {
       alert('Please enter both email and password for Parent login');
+      return;
+    }
+
+    try {
+      // API request configuration
+      const data = {
+        username: parentEmail, // Map email to username as per your API requirement
+        password: parentPassword,
+      };
+
+      const response = await axios.post(
+        'http://localhost:8000/smartskool/login/root/',
+        data,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      // Handle successful login
+      console.log('Login Successful:', response.data);
+
+      // Store user type or token if needed
+      localStorage.setItem('userType', 'admin'); // Adjust based on API response
+      localStorage.setItem('token', response.data.token); // Save token if provided
+      localStorage.setItem('school', response.data.school_name); // Save school name
+      localStorage.setItem('schoolId', response.data.school_id);
+      navigate('/admin/dashboard');
+
+    } catch (error) {
+      // Handle error scenarios
+      console.error('Login Error:', error);
+      if (error.response && error.response.data) {
+        alert(`Login failed: ${error.response.data.detail || 'Invalid credentials'}`);
+      } else {
+        alert('An error occurred. Please try again.');
+      }
     }
   };
 
@@ -34,7 +67,7 @@ const Login = () => {
     if (schoolId && schoolUsername && schoolPassword) {
       if (schoolUsername === 'admin') {
         localStorage.setItem('userType', 'admin');
-        navigate('/admin/dashboard');
+        navigate('/dashboard');
       } else {
         alert('Use "admin" as username for School login');
       }
@@ -49,8 +82,8 @@ const Login = () => {
       <div className="login-forms">
         {/* Parent Login Form */}
         <div className="login-form">
-          <h3>Parent or Student Login</h3>
-          <form onSubmit={handleParentLogin}>
+          <h3>Admin User Login</h3>
+          <form onSubmit={handleRootLogin}>
             <input
               type="text"
               placeholder="example@email.com"
@@ -73,18 +106,18 @@ const Login = () => {
 
         {/* School Login Form */}
         <div className="login-form">
-          <h3>School Login</h3>
+          <h3>Student or Teacher Login</h3>
           <form onSubmit={handleSchoolLogin}>
             <input
               type="text"
-              placeholder="Ex. 123456"
+              placeholder="ID Ex. 123456"
               value={schoolId}
               onChange={(e) => setSchoolId(e.target.value)}
               className="login-input"
             />
             <input
               type="text"
-              placeholder="example@school.com"
+              placeholder="USERNAME"
               value={schoolUsername}
               onChange={(e) => setSchoolUsername(e.target.value)}
               className="login-input"

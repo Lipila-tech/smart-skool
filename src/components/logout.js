@@ -8,6 +8,9 @@ const Logout = () => {
   const handleLogout = () => {
     // Clear user data from localStorage
     localStorage.removeItem('userType');
+    localStorage.removeItem('school');
+    localStorage.removeItem('token');
+    localStorage.removeItem('schoolId');
     // Redirect to the login page
     navigate('/');
   };
