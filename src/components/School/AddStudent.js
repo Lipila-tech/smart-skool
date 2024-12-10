@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../css/addStudent.css";
 import axios from 'axios';
 
@@ -10,42 +10,9 @@ function AddStudent({ schoolId }) {
     sponsor: "",
   });
 
-  const [classRooms, setClassRooms] = useState([]);
-  const [sponsors, setSponsors] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [sponsors, setSponsors] = useState(["Sponsor 1", "Sponsor 2"]); // Example sponsors list
   const [newSponsor, setNewSponsor] = useState("");
-
-  // Fetch classes from the API
-  useEffect(() => {
-    const fetchClasses = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8000/smartskool/schools/${schoolId}/classrooms/`
-        );
-        setClassRooms(response.data);
-      } catch (error) {
-        console.error('Error fetching classes:', error);
-      }
-    };
-
-    fetchClasses();
-  }, [schoolId]);
-
-  // Fetch sponsor from the API
-  useEffect(() => {
-    const fetchSponsors = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8000/smartskool/schools/${schoolId}/sponsor/users/`
-        );
-        setSponsors(response.data);
-      } catch (error) {
-        console.error('Error fetching sponsors:', error);
-      }
-    };
-
-    fetchSponsors();
-  }, [schoolId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
