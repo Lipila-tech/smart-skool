@@ -1,17 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/addStudent.css";
+import axios from 'axios';
 
-function AddStudent() {
+function AddStudent({ schoolId }) {
   const [form, setForm] = useState({
     name: "",
     age: "",
-    class: "",
+    classroom: "",
     sponsor: "",
   });
 
+  const [classRooms, setClassRooms] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [sponsors, setSponsors] = useState(["Sponsor 1", "Sponsor 2"]); // Example sponsors list
+  const [sponsors, setSponsors] = useState([]);
   const [newSponsor, setNewSponsor] = useState("");
+
+  // Fetch classes from the API
+  useEffect(() => {
+    const fetchClasses = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8000/smartskool/class-management/all/${schoolId}/`
+        );
+        setClassRooms(response.data);
+      } catch (error) {
+        console.error('Error fetching classes:', error);
+      }
+    };
+
+    fetchClasses();
+  }, [schoolId]);
+
+  // Fetch sponsor from the API
+  useEffect(() => {
+    const fetchSponsors = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8000/smartskool/user-management/all/${schoolId}/sponsor/`
+        );
+        setSponsors(response.data);
+      } catch (error) {
+        console.error('Error fetching sponsors:', error);
+      }
+    };
+
+    fetchSponsors();
+  }, [schoolId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,6 +54,10 @@ function AddStudent() {
 
   const handleSponsorChange = (e) => {
     setForm({ ...form, sponsor: e.target.value });
+  };
+
+  const handleClassroomChange = (e) => {
+    setForm({ ...form, classroom: e.target.value });
   };
 
   const handleSubmit = (e) => {
@@ -86,14 +124,24 @@ function AddStudent() {
         </label>
         <label className="form-label">
           Class:
-          <input
-            type="text"
-            name="class"
-            value={form.class}
-            onChange={handleChange}
-            required
-            className="form-input"
-          />
+          <div className="sponsor-container">
+            <select
+              name="classroom"
+              value={form.classroom}
+              onChange={handleClassroomChange}
+              required
+              className="form-input"
+            >
+              <option value="" disabled>
+                Select a class
+              </option>
+              {classRooms.map((classroom) => (
+                <option key={classroom.id} value={classroom.id}>
+                  {`${classroom.name} - ${classroom.grade}`}
+                </option>
+              ))}
+            </select>
+          </div>
         </label>
         <label className="form-label">
           Sponsor:
@@ -108,9 +156,9 @@ function AddStudent() {
               <option value="" disabled>
                 Select a sponsor
               </option>
-              {sponsors.map((sponsor, index) => (
-                <option key={index} value={sponsor}>
-                  {sponsor}
+              {sponsors.map((sponsor) => (
+                <option key={sponsor.user_id} value={sponsor.user_id}>
+                  {`${sponsor.firstname} ${sponsor.lastname}`}
                 </option>
               ))}
             </select>
