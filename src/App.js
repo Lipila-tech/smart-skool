@@ -23,7 +23,6 @@ import Announcements from "./components/School/Announcements";
 import Header from "./components/common/header";
 import AddUser from "./components/School/AddUser";
 
-
 function App() {
   const schoolId = localStorage.getItem('schoolId'); // Retrieve schoolId from localStorage
   return (
