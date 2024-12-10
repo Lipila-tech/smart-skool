@@ -12,6 +12,9 @@ const AdminLinks = () => {
           <Link to="/admin/dashboard/add-student">Add Student</Link>
         </li>
         <li>
+          <Link to="/admin/dashboard/add-user">Add User</Link>
+        </li>
+        <li>
           <Link to="/admin/dashboard/manage-students">Manage Students</Link>
         </li>
         <li>

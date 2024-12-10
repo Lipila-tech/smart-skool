@@ -21,8 +21,10 @@ import TeacherManagement from "./components/School/TeacherManagement";
 import ClassManagement from "./components/School/ClassManagement";
 import Announcements from "./components/School/Announcements";
 import Header from "./components/common/header";
+import AddUser from "./components/School/AddUser";
 
 function App() {
+  const schoolId = localStorage.getItem('schoolId'); // Retrieve schoolId from localStorage
   return (
     <Router>
       <Header />
@@ -61,9 +63,10 @@ function App() {
             {/* Nested routes for AdminDashboard */}
             <Route path="payment-management" element={<PaymentManagement />} />
             <Route path="add-student" element={<AddStudent />} />
+            <Route path="add-user" element={<AddUser />} />
             <Route path="manage-students" element={<ManageStudents />} />
             <Route path="teacher-management" element={<TeacherManagement />} />
-            <Route path="class-management" element={<ClassManagement />} />
+            <Route path="class-management" element={<ClassManagement schoolId={schoolId}/>} />
             <Route path="announcements" element={<Announcements />} />
             <Route path="logout" element={<Logout />} />
           </Route>

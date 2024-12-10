@@ -1,23 +1,30 @@
 import React, { useState } from "react";
-import "../css/addStudent.css"; 
+import "../css/addStudent.css";
 
 function AddStudent() {
   const [form, setForm] = useState({
     name: "",
     age: "",
     class: "",
-    parentEmail: "",
+    sponsor: "",
   });
+
+  const [showModal, setShowModal] = useState(false);
+  const [sponsors, setSponsors] = useState(["Sponsor 1", "Sponsor 2"]); // Example sponsors list
+  const [newSponsor, setNewSponsor] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
+  const handleSponsorChange = (e) => {
+    setForm({ ...form, sponsor: e.target.value });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Replace with your actual API endpoint
     fetch("/api/admin/students", {
       method: "POST",
       headers: {
@@ -31,14 +38,24 @@ function AddStudent() {
         }
         return response.json();
       })
-      .then((data) => {
+      .then(() => {
         alert("Student added successfully!");
-        setForm({ name: "", age: "", class: "", parentEmail: "" });
+        setForm({ name: "", age: "", class: "", sponsor: "" });
       })
       .catch((error) => {
         console.error("Error adding student:", error);
         alert("There was an error adding the student.");
       });
+  };
+
+  const handleAddSponsor = () => {
+    if (newSponsor.trim()) {
+      setSponsors([...sponsors, newSponsor]);
+      setNewSponsor("");
+      setShowModal(false);
+    } else {
+      alert("Please enter a sponsor name.");
+    }
   };
 
   return (
@@ -79,18 +96,63 @@ function AddStudent() {
           />
         </label>
         <label className="form-label">
-          Parent Email:
-          <input
-            type="email"
-            name="parentEmail"
-            value={form.parentEmail}
-            onChange={handleChange}
-            required
-            className="form-input"
-          />
+          Sponsor:
+          <div className="sponsor-container">
+            <select
+              name="sponsor"
+              value={form.sponsor}
+              onChange={handleSponsorChange}
+              required
+              className="form-input"
+            >
+              <option value="" disabled>
+                Select a sponsor
+              </option>
+              {sponsors.map((sponsor, index) => (
+                <option key={index} value={sponsor}>
+                  {sponsor}
+                </option>
+              ))}
+            </select>
+            <button
+              type="button"
+              onClick={() => setShowModal(true)}
+              className="form-button"
+            >
+              Add Sponsor
+            </button>
+          </div>
         </label>
-        <button type="submit" className="form-button">Add Student</button>
+        <button type="submit" className="form-button">
+          Add Student
+        </button>
       </form>
+
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Add New Sponsor</h3>
+            <input
+              type="text"
+              value={newSponsor}
+              onChange={(e) => setNewSponsor(e.target.value)}
+              placeholder="Enter sponsor first name"
+              className="form-input"
+            />
+            <div className="modal-actions">
+              <button onClick={handleAddSponsor} className="form-button">
+                Add
+              </button>
+              <button
+                onClick={() => setShowModal(false)}
+                className="form-button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
