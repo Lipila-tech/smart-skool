@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/addUser.css"; // Add styles specific to this component
 
-function AddUser() {
+function AddUser({schoolId}) {
   const [form, setForm] = useState({
     name: "",
     email: "",

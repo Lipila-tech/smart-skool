@@ -63,8 +63,8 @@ function App() {
             {/* Nested routes for AdminDashboard */}
             <Route path="payment-management" element={<PaymentManagement />} />
             <Route path="add-student" element={<AddStudent schoolId={schoolId}/>} />
-            <Route path="add-user" element={<AddUser />} />
-            <Route path="manage-students" element={<ManageStudents />} />
+            <Route path="add-user" element={<AddUser schoolId={schoolId}/>} />
+            <Route path="manage-students" element={<ManageStudents schoolId={schoolId}/>} />
             <Route path="teacher-management" element={<TeacherManagement />} />
             <Route path="class-management" element={<ClassManagement schoolId={schoolId}/>} />
             <Route path="announcements" element={<Announcements />} />

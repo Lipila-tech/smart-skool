@@ -112,10 +112,10 @@ function AddStudent({ schoolId }) {
           />
         </label>
         <label className="form-label">
-          Age:
+          D.O.B:
           <input
             type="number"
-            name="age"
+            name="dob"
             value={form.age}
             onChange={handleChange}
             required
