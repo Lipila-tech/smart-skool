@@ -1,12 +1,14 @@
 {
     "users": [
       {
+        "id": 1,
         "username": "parent1",
         "email": "parent",
         "password": "parent123",
         "type": "parent"
       },
       {
+        "id": 2,
         "username": "admin1",
         "email": "admin",
         "password": "admin123",

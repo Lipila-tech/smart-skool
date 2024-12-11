@@ -1,0 +1,7 @@
+[
+  {
+    "parentId": "P12345",
+    "name": "John Mubanga",
+    "students": ["S001", "S002"]
+  }
+]

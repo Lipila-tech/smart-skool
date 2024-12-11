@@ -1,0 +1,44 @@
+[
+  {
+    "studentId": "S001",
+    "name": "Alice Mubanga",
+    "parentId": "P12345",
+    "outstandingFees": 500,
+    "performance": [
+      { "subject": "Math", "grade": "A", "comments": "Excellent" },
+      { "subject": "English", "grade": "B+", "comments": "Good improvement" }
+    ],
+    "attendance": [
+      { "date": "2024-10-01", "status": "Present" },
+      { "date": "2024-10-02", "status": "Absent" }
+    ]
+  },
+  {
+    "studentId": "S002",
+    "name": "David Mubanga",
+    "parentId": "P12345",
+    "outstandingFees": 400,
+    "performance": [
+      { "subject": "Science", "grade": "A-", "comments": "Well done" },
+      { "subject": "Math", "grade": "B", "comments": "Needs practice" }
+    ],
+    "attendance": [
+      { "date": "2024-10-01", "status": "Present" },
+      { "date": "2024-10-02", "status": "Present" }
+    ]
+  },
+  {
+    "studentId": "S003",
+    "name": "Grace Chisenga",
+    "parentId": "P67890",
+    "outstandingFees": 300,
+    "performance": [
+      { "subject": "History", "grade": "B", "comments": "Good understanding" },
+      { "subject": "Geography", "grade": "A", "comments": "Excellent" }
+    ],
+    "attendance": [
+      { "date": "2024-10-01", "status": "Absent" },
+      { "date": "2024-10-02", "status": "Present" }
+    ]
+  }
+]

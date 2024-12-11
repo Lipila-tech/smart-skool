@@ -4,6 +4,9 @@ import "../css/tableStyles.css";
 import "../css/makePayment.css";
 
 function MakePayment() {
+  const [students, setStudents] = useState([]);
+  const [selectedStudents, setSelectedStudents] = useState([]);
+  const [totalAmountDue, setTotalAmountDue] = useState(0);
   const [amount, setAmount] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("MTN Momo");
   const [isConfirming, setIsConfirming] = useState(false);
@@ -12,13 +15,45 @@ function MakePayment() {
   const [showLoanTerms, setShowLoanTerms] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState("");
   const [reminderMessage, setReminderMessage] = useState("");
-  const [students, setStudents] = useState([
-    { id: 1, name: "Wilson Chisenga", outstandingFees: 500 },
-    { id: 2, name: "Barnabas Mwaipaya", outstandingFees: 400 },
-    { id: 3, name: "Kombe Mwape", outstandingFees: 300 },
-  ]);
-  const [selectedStudents, setSelectedStudents] = useState([]);
-  const [totalAmountDue, setTotalAmountDue] = useState(0);
+  const parentId = "P12345"; // Example parent ID (this would come from authentication)
+
+  useEffect(() => {
+    const fetchStudentData = async () => {
+      try {
+        const parentResponse = await fetch("/data/sample-parent-data.json");
+        const studentResponse = await fetch("/data/sample-student-data.json");
+
+        if (!parentResponse.ok || !studentResponse.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const parentData = await parentResponse.json();
+        const studentData = await studentResponse.json();
+
+        const parent = parentData.find((p) => p.parentId === parentId);
+        if (!parent) {
+          throw new Error("Parent data not found");
+        }
+
+        const parentStudents = studentData.filter((student) =>
+          parent.students.includes(student.studentId)
+        );
+
+        setStudents(parentStudents);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    fetchStudentData();
+  }, [parentId]);
+
+  useEffect(() => {
+    const total = students
+      .filter((student) => selectedStudents.includes(student.studentId))
+      .reduce((sum, student) => sum + student.outstandingFees, 0);
+    setTotalAmountDue(total);
+  }, [selectedStudents, students]);
 
   useEffect(() => {
     if (paymentStatus === "pending") {
@@ -30,18 +65,12 @@ function MakePayment() {
     }
   }, [paymentStatus]);
 
-  const handleStudentSelection = (student) => {
-    const updatedSelection = selectedStudents.includes(student.id)
-      ? selectedStudents.filter((id) => id !== student.id)
-      : [...selectedStudents, student.id];
-
-    setSelectedStudents(updatedSelection);
-
-    const total = students
-      .filter((student) => updatedSelection.includes(student.id))
-      .reduce((sum, student) => sum + student.outstandingFees, 0);
-
-    setTotalAmountDue(total);
+  const handleStudentSelection = (studentId) => {
+    setSelectedStudents((prev) =>
+      prev.includes(studentId)
+        ? prev.filter((id) => id !== studentId)
+        : [...prev, studentId]
+    );
   };
 
   const handlePayment = (e) => {
@@ -96,12 +125,12 @@ function MakePayment() {
                 </thead>
                 <tbody>
                   {students.map((student) => (
-                    <tr key={student.id}>
+                    <tr key={student.studentId}>
                       <td>
                         <input
                           type="checkbox"
-                          checked={selectedStudents.includes(student.id)}
-                          onChange={() => handleStudentSelection(student)}
+                          checked={selectedStudents.includes(student.studentId)}
+                          onChange={() => handleStudentSelection(student.studentId)}
                         />
                       </td>
                       <td>{student.name}</td>
