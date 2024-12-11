@@ -47,7 +47,7 @@ const Login = () => {
       localStorage.setItem('token', response.data.token); // Save token if provided
       localStorage.setItem('school', response.data.school_name); // Save school name
       localStorage.setItem('schoolId', response.data.school_id);
-      navigate('/admin/dashboard');
+      navigate('/admin/dashboard/');
 
     } catch (error) {
       // Handle error scenarios
