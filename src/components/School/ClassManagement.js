@@ -4,12 +4,13 @@ import axios from 'axios';
 function ClassManagement({ schoolId }) {
   const [classes, setClasses] = useState([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
-  const [successMessage, setSuccessMessage] = useState(''); // For success message
+  const [successMessage, setSuccessMessage] = useState('');
   const [newClass, setNewClass] = useState({
     name: '',
     grade: '',
     teacher: '',
     tuition_fee: '',
+    capacity: '',
   });
 
   // Fetch classes from the API
@@ -41,10 +42,10 @@ function ClassManagement({ schoolId }) {
         }
       );
       setClasses((prevClasses) => [...prevClasses, response.data]);
-      setSuccessMessage('Class created successfully!'); // Show success message
-      setTimeout(() => setSuccessMessage(''), 10000); // Clear message after 3 seconds
+      setSuccessMessage('Class created successfully!');
+      setTimeout(() => setSuccessMessage(''), 10000);
       setShowCreateModal(false);
-      setNewClass({ name: '', grade: '', teacher: '', tuition_fee: '' });
+      setNewClass({ name: '', grade: '', teacher: '', tuition_fee: '', capacity: ''});
     } catch (error) {
       console.error('Error creating class:', error);
     }
@@ -53,6 +54,16 @@ function ClassManagement({ schoolId }) {
   // Handle opening and closing the modal
   const toggleCreateModal = () => {
     setShowCreateModal((prev) => !prev);
+  };
+
+  // Function to get the color code for capacity
+  const getCapacityColor = (classObj) => {
+    const capacity = parseInt(classObj.capacity, 10);
+    const enrolled = parseInt(classObj.enrolled, 10);
+
+    if (enrolled > capacity) return 'red'; // Over capacity
+    if (enrolled < capacity / 2) return 'orange'; // Less than half capacity
+    return 'green'; // Good capacity
   };
 
   return (
@@ -69,7 +80,9 @@ function ClassManagement({ schoolId }) {
             <th>Class Name</th>
             <th>Grade</th>
             <th>Teacher</th>
-            <th>Tuition</th>
+            <th>Tuition(ZMW)</th>
+            <th>Capacity</th>
+            <th>Total Students</th> {/* New column */}
             <th>Actions</th>
           </tr>
         </thead>
@@ -80,8 +93,21 @@ function ClassManagement({ schoolId }) {
               <td>{cls.name || 'N/A'}</td>
               <td>{cls.grade || 'N/A'}</td>
               <td>{cls.teacher || 'N/A'}</td>
-              <td>{cls.tuition_fee || 'N/A'}</td>
+              <td>k {cls.tuition_fee || 'N/A'}</td>
+              <td style={{ color: getCapacityColor(cls) }}>
+                {cls.capacity || 'N/A'}
+              </td>
               <td>
+                {/* New column showing total enrolled students */}
+                <span style={{ color: getCapacityColor(cls) }}>
+                  {cls.enrolled || 0}
+                </span>
+              </td>
+              <td>
+                {/* New button to view class details */}
+                <button onClick={() => alert(`View class details: ${cls.id}`)}>
+                  View Class
+                </button>
                 <button onClick={() => alert(`Edit class: ${cls.name}`)}>
                   Edit
                 </button>
@@ -134,6 +160,14 @@ function ClassManagement({ schoolId }) {
             value={newClass.tuition_fee}
             onChange={(e) =>
               setNewClass((prev) => ({ ...prev, tuition_fee: e.target.value }))
+            }
+          />
+          <input
+            type="number"
+            placeholder="Max No of Students"
+            value={newClass.capacity}
+            onChange={(e) =>
+              setNewClass((prev) => ({ ...prev, capacity: e.target.value }))
             }
           />
           <br />
