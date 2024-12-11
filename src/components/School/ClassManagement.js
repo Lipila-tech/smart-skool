@@ -18,7 +18,7 @@ function ClassManagement({ schoolId }) {
     const fetchClasses = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/smartskool/class-management/all/${schoolId}/`
+          `http://localhost:8000/smartskool/schools/${schoolId}/classrooms/`
         );
         setClasses(response.data);
       } catch (error) {
@@ -33,7 +33,7 @@ function ClassManagement({ schoolId }) {
   const handleCreateClass = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:8000/smartskool/class-management/${schoolId}/create/`,
+        `http://localhost:8000/smartskool/schools/${schoolId}/create/classroom/`,
         newClass,
         {
           headers: {

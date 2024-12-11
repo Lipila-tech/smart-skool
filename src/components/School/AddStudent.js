@@ -20,7 +20,7 @@ function AddStudent({ schoolId }) {
     const fetchClasses = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/smartskool/class-management/all/${schoolId}/`
+          `http://localhost:8000/smartskool/schools/${schoolId}/classrooms/`
         );
         setClassRooms(response.data);
       } catch (error) {
@@ -36,7 +36,7 @@ function AddStudent({ schoolId }) {
     const fetchSponsors = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/smartskool/user-management/all/${schoolId}/sponsor/`
+          `http://localhost:8000/smartskool/schools/${schoolId}/sponsor/users/`
         );
         setSponsors(response.data);
       } catch (error) {

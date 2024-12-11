@@ -15,7 +15,7 @@ function ManageStudents({ schoolId }) {
     const fetchClasses = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/smartskool/class-management/all/${schoolId}/`
+          `http://localhost:8000/smartskool/schools/${schoolId}/students/`
         );
         setClassRooms(response.data);
       } catch (error) {
@@ -31,7 +31,7 @@ function ManageStudents({ schoolId }) {
     const fetchSponsors = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/smartskool/user-management/all/${schoolId}/sponsor/`
+          `http://localhost:8000/smartskool/schools/${schoolId}/sponsor/users/`
         );
         setSponsors(response.data);
       } catch (error) {
@@ -46,7 +46,7 @@ function ManageStudents({ schoolId }) {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/smartskool/manage-students/all/${schoolId}/`);
+        const response = await axios.get(`http://localhost:8000/smartskool/schools/${schoolId}/students/`);
         setStudents(response.data);
         setFilteredStudents(response.data);
       } catch (error) {
