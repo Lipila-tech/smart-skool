@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "parentId": "P12345",
+      "date": "2024-10-10",
+      "transaction": "Tuition Payment",
+      "amount": 500,
+      "status": "Completed"
+    },
+    {
+      "id": 2,
+      "parentId": "P12345",
+      "date": "2024-09-15",
+      "transaction": "Library Fee",
+      "amount": 80,
+      "status": "Pending"
+    },
+    {
+      "id": 3,
+      "parentId": "P12345",
+      "date": "2024-08-20",
+      "transaction": "Sports Equipment",
+      "amount": 125,
+      "status": "Completed"
+    },
+    {
+      "id": 4,
+      "parentId": "P67890",
+      "date": "2024-09-05",
+      "transaction": "School Trip",
+      "amount": 300,
+      "status": "Completed"
+    },
+    {
+      "id": 5,
+      "parentId": "P67890",
+      "date": "2024-07-18",
+      "transaction": "Sports Fee",
+      "amount": 150,
+      "status": "Pending"
+    }
+  ]
+  

@@ -2,6 +2,13 @@
   {
     "parentId": "P12345",
     "name": "John Mubanga",
-    "students": ["S001", "S002"]
+    "students": ["S001", "S002"],
+    "paymentHistory": [1, 2, 3]
+  },
+  {
+    "parentId": "P67890",
+    "name": "Jane Phiri",
+    "students": ["S003"],
+    "paymentHistory": [4, 5]
   }
 ]
