@@ -56,7 +56,7 @@ function App() {
             path="/admin/dashboard"
             element={
               <ProtectedRoute requiredRole="admin">
-                <AdminDashboard />
+                <AdminDashboard schoolId={schoolId} />
               </ProtectedRoute>
             }
           >
