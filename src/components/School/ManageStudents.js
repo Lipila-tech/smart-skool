@@ -7,6 +7,40 @@ function ManageStudents({ schoolId }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
+  const [classRooms, setClassRooms] = useState([]);
+  const [sponsors, setSponsors] = useState([]);
+
+  // Fetch classes from the API
+  useEffect(() => {
+    const fetchClasses = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8000/smartskool/class-management/all/${schoolId}/`
+        );
+        setClassRooms(response.data);
+      } catch (error) {
+        console.error('Error fetching classes:', error);
+      }
+    };
+
+    fetchClasses();
+  }, [schoolId]);
+
+  // Fetch sponsor from the API
+  useEffect(() => {
+    const fetchSponsors = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8000/smartskool/user-management/all/${schoolId}/sponsor/`
+        );
+        setSponsors(response.data);
+      } catch (error) {
+        console.error('Error fetching sponsors:', error);
+      }
+    };
+
+    fetchSponsors();
+  }, [schoolId]);
 
   // Fetch students from API
   useEffect(() => {
@@ -22,6 +56,7 @@ function ManageStudents({ schoolId }) {
 
     fetchStudents();
   }, [schoolId]);
+
 
   // Handle search input
   const handleSearch = (e) => {
@@ -68,9 +103,9 @@ function ManageStudents({ schoolId }) {
       <table style={styles.table}>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
+            <th>#</th>
+            <th>Names</th>
+            <th>Tuition(ZMW)</th>
             <th>Sex</th>
             <th>Classroom</th>
             <th>Sponsor</th>
@@ -79,11 +114,11 @@ function ManageStudents({ schoolId }) {
           </tr>
         </thead>
         <tbody>
-          {filteredStudents.map((student) => (
-            <tr key={student.id}>
-              <td>{student.id}</td>
-              <td>{student.firstname}</td>
-              <td>{student.lastname}</td>
+          {filteredStudents.map((student, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{student.fullname}</td>
+              <td>{student.tuition || "N\A"} </td>
               <td>{student.sex}</td>
               <td>{student.classroom || "N/A"}</td>
               <td>{student.sponsor || "N/A"}</td>
@@ -133,9 +168,22 @@ function ManageStudents({ schoolId }) {
               />
             </label>
             <label>
-              Classroom:
+              Tuition:
               <input
-                type="text"
+                type="number"
+                value={selectedStudent.tuition}
+                onChange={(e) =>
+                  setSelectedStudent({
+                    ...selectedStudent,
+                    tuition: e.target.value,
+                  })
+                }
+              />
+            </label>
+            <label>
+              Classroom:
+              <select
+                name="classroom"
                 value={selectedStudent.classroom || ""}
                 onChange={(e) =>
                   setSelectedStudent({
@@ -143,12 +191,22 @@ function ManageStudents({ schoolId }) {
                     classroom: e.target.value,
                   })
                 }
-              />
+                className=""
+              >
+                <option value="" disabled>
+                  Select a class
+                </option>
+                {classRooms.map((classroom) => (
+                  <option key={classroom.id} value={classroom.id}>
+                    {`${classroom.name} - ${classroom.grade}`}
+                  </option>
+                ))}
+              </select>
             </label>
             <label>
               Sponsor:
-              <input
-                type="text"
+              <select
+                name="sponsor"
                 value={selectedStudent.sponsor}
                 onChange={(e) =>
                   setSelectedStudent({
@@ -156,8 +214,20 @@ function ManageStudents({ schoolId }) {
                     sponsor: e.target.value,
                   })
                 }
-              />
+                required
+                className="s"
+              >
+                <option value="" disabled>
+                  Select a sponsor
+                </option>
+                {sponsors.map((sponsor) => (
+                  <option key={sponsor.user_id} value={sponsor.user_id}>
+                    {`${sponsor.firstname} ${sponsor.lastname}`}
+                  </option>
+                ))}
+              </select>
             </label>
+
             <button onClick={closeEditModal} style={styles.closeButton}>
               Close
             </button>

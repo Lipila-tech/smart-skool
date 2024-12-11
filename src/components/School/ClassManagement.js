@@ -87,9 +87,9 @@ function ClassManagement({ schoolId }) {
           </tr>
         </thead>
         <tbody>
-          {classes.map((cls) => (
-            <tr key={cls.id}>
-              <td>{cls.id}</td>
+          {classes.map((cls, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
               <td>{cls.name || 'N/A'}</td>
               <td>{cls.grade || 'N/A'}</td>
               <td>{cls.teacher || 'N/A'}</td>

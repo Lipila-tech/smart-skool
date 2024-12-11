@@ -11,8 +11,8 @@ function AddStudent({ schoolId }) {
   });
 
   const [classRooms, setClassRooms] = useState([]);
-  const [showModal, setShowModal] = useState(false);
   const [sponsors, setSponsors] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const [newSponsor, setNewSponsor] = useState("");
 
   // Fetch classes from the API
