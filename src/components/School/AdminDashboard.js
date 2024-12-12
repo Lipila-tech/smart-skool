@@ -1,51 +1,8 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
-=======
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
->>>>>>> 920a28e (Fetch dashboard data from API)
 import "../css/adminDashboard.css";
 
-<<<<<<< HEAD
-function AdminDashboard() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [username, setUsername] = useState(""); // State to hold username
-  const navigate = useNavigate(); // For navigation after logout
-
-  // Toggle sidebar open/close state
-  const toggleSidebar = () => {
-    setIsSidebarOpen((prev) => !prev);
-  };
-
-  // Handle logout
-  const handleLogout = () => {
-    console.log("Admin logged out");
-    localStorage.removeItem("userType"); // Clear user type from localStorage
-    localStorage.removeItem("loggedInUser"); // Clear logged-in user info
-    navigate("/login"); // Redirect to the login page
-  };
-
-  // Fetch logged-in username
-  useEffect(() => {
-    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-    if (loggedInUser && loggedInUser.username) {
-      setUsername(loggedInUser.username);
-    } else {
-      console.warn("No logged-in user found. Redirecting to login...");
-      navigate("/login");
-    }
-  }, [navigate]);
-
-  return (
-    <div className="dashboard-layout">
-      {/* Toggle Button */}
-      <button className="toggle-button" onClick={toggleSidebar}>
-        <FaBars />
-      </button>
-=======
 function AdminDashboard({ schoolId }) {
   const [dashboardData, setDashboardData] = useState({
     students: 0,
@@ -85,7 +42,6 @@ function AdminDashboard({ schoolId }) {
         <Link to="/admin/dashboard/" className='admin-link'>Dashboard</Link>
         <AdminLinks />
       </div>
->>>>>>> 920a28e (Fetch dashboard data from API)
 
       {/* Sidebar */}
       <aside className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
@@ -128,9 +84,6 @@ function AdminDashboard({ schoolId }) {
 
       {/* Main Content Area */}
       <div className="content-container">
-<<<<<<< HEAD
-        <Outlet />
-=======
         <p className="dashboard-path">{location.pathname}</p>
         <Outlet />
         <h1 className={`dashboard-header ${!isDashboardPage ? 'hidden-header' : ''}`}>Summary</h1>
@@ -165,7 +118,6 @@ function AdminDashboard({ schoolId }) {
           </div>
         </div>
         
->>>>>>> 920a28e (Fetch dashboard data from API)
       </div>
     </div>
   );
