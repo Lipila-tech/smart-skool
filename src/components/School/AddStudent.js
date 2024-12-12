@@ -11,7 +11,6 @@ function AddStudent({ schoolId }) {
   });
 
   const [showModal, setShowModal] = useState(false);
-  const [sponsors, setSponsors] = useState(["Sponsor 1", "Sponsor 2"]); // Example sponsors list
   const [newSponsor, setNewSponsor] = useState("");
 
   const handleChange = (e) => {
