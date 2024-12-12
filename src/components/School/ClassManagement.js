@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function ClassManagement({ schoolId }) {
   const [classes, setClasses] = useState([]);
+  const [teachers, setTeachers] = useState([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [newClass, setNewClass] = useState({
@@ -28,6 +29,23 @@ function ClassManagement({ schoolId }) {
 
     fetchClasses();
   }, [schoolId]);
+
+  // Fetch teacher from the API
+  useEffect(() => {
+    const fetchTeachers = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8000/smartskool/schools/${schoolId}/teacher/users/`
+        );
+        setTeachers(response.data);
+      } catch (error) {
+        console.error('Error fetching teachers:', error);
+      }
+    };
+
+    fetchTeachers();
+  }, [schoolId]);
+
 
   // Handle creating a new class
   const handleCreateClass = async () => {
@@ -146,14 +164,24 @@ function ClassManagement({ schoolId }) {
               setNewClass((prev) => ({ ...prev, grade: e.target.value }))
             }
           />
-          <input
-            type="text"
-            placeholder="Teacher"
-            value={newClass.teacher}
-            onChange={(e) =>
-              setNewClass((prev) => ({ ...prev, teacher: e.target.value }))
-            }
-          />
+          <select
+              name="teacher"
+              value={newClass.teacher}
+              onChange={(e) =>
+                setNewClass((prev) => ({ ...prev, teacher: e.target.value }))
+              }
+              required
+              className=""
+            >
+              <option value="" disabled>
+                Select a teacher
+              </option>
+              {teachers.map((teacher) => (
+                <option key={teacher.user_id} value={teacher.user_id}>
+                  {`${teacher.firstname} ${teacher.lastname}`}
+                </option>
+              ))}
+            </select>
           <input
             type="number"
             placeholder="Tuition"

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import "../css/adminDashboard.css";
+import AdminLinks from "./AdminLinks";
+import { Outlet } from 'react-router-dom';
 
 function AdminDashboard({ schoolId }) {
   const [dashboardData, setDashboardData] = useState({
@@ -43,46 +45,7 @@ function AdminDashboard({ schoolId }) {
         <AdminLinks />
       </div>
 
-      {/* Sidebar */}
-      <aside className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
-        <h2>Admin Dashboard</h2>
-        <nav>
-          <ul>
-            <li>
-              <Link to="add-student">Add Student</Link>
-            </li>
-            <li>
-              <Link to="manage-students">Manage Students</Link>
-            </li>
-            <li>
-              <Link to="teacher-management">Manage Teachers</Link>
-            </li>
-            <li>
-              <Link to="payment-management">Payment Management</Link>
-            </li>
-            <li>
-              <Link to="announcements">Announcements</Link>
-            </li>
-            <li>
-              <Link to="class-management">Class Management</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* Username and Logout */}
-        <div className="user-logout-container">
-          {username && (
-            <p className="username-display">
-              Username: <strong>{username}</strong>
-            </p>
-          )}
-          <button className="logout-button" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
-      </aside>
-
-      {/* Main Content Area */}
+      {/* Main content area */}
       <div className="content-container">
         <p className="dashboard-path">{location.pathname}</p>
         <Outlet />
