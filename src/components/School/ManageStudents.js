@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axiosInstance from '../../api/axios';
+
 
 function ManageStudents({ schoolId }) {
   const [students, setStudents] = useState([]);
@@ -14,8 +15,8 @@ function ManageStudents({ schoolId }) {
   useEffect(() => {
     const fetchClasses = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/smartskool/schools/${schoolId}/students/`
+        const response = await axiosInstance.get(
+          `/schools/${schoolId}/students/`
         );
         setClassRooms(response.data);
       } catch (error) {
@@ -30,8 +31,8 @@ function ManageStudents({ schoolId }) {
   useEffect(() => {
     const fetchSponsors = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/smartskool/schools/${schoolId}/sponsor/users/`
+        const response = await axiosInstance.get(
+          `/schools/${schoolId}/sponsor/users/`
         );
         setSponsors(response.data);
       } catch (error) {
@@ -46,7 +47,7 @@ function ManageStudents({ schoolId }) {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/smartskool/schools/${schoolId}/students/`);
+        const response = await axiosInstance.get(`/schools/${schoolId}/students/`);
         setStudents(response.data);
         setFilteredStudents(response.data);
       } catch (error) {
@@ -118,7 +119,7 @@ function ManageStudents({ schoolId }) {
             <tr key={index}>
               <td>{index + 1}</td>
               <td>{student.fullname}</td>
-              <td>{student.tuition || "N\A"} </td>
+              <td>{student.tuition || "N/A"} </td>
               <td>{student.sex}</td>
               <td>{student.classroom || "N/A"}</td>
               <td>{student.sponsor || "N/A"}</td>

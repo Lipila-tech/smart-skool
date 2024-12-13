@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import axios from 'axios';
 import "../css/adminDashboard.css";
 import AdminLinks from "./AdminLinks";
 import { Outlet } from 'react-router-dom';
+import axiosInstance from '../../api/axios';
+
 
 function AdminDashboard({ schoolId }) {
   const [dashboardData, setDashboardData] = useState({
@@ -25,8 +26,8 @@ function AdminDashboard({ schoolId }) {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/smartskool/schools/dashboard/${schoolId}/`
+        const response = await axiosInstance.get(
+          `/schools/dashboard/${schoolId}/`
         );
         setDashboardData(response.data);
       } catch (error) {

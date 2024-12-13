@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../css/addStudent.css";
-import axios from 'axios';
+import axiosInstance from '../../api/axios';
 
 function AddStudent({ schoolId }) {
   const [form, setForm] = useState({
@@ -19,8 +19,8 @@ function AddStudent({ schoolId }) {
   useEffect(() => {
     const fetchClasses = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/smartskool/schools/${schoolId}/classrooms/`
+        const response = await axiosInstance.get(
+          `/schools/${schoolId}/classrooms/`
         );
         setClassRooms(response.data);
       } catch (error) {
@@ -35,8 +35,8 @@ function AddStudent({ schoolId }) {
   useEffect(() => {
     const fetchSponsors = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/smartskool/schools/${schoolId}/sponsor/users/`
+        const response = await axiosInstance.get(
+          `/schools/${schoolId}/sponsor/users/`
         );
         setSponsors(response.data);
       } catch (error) {

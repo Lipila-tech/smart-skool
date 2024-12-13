@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../api/axios';
 
 function ClassManagement({ schoolId }) {
   const [classes, setClasses] = useState([]);
@@ -18,8 +18,8 @@ function ClassManagement({ schoolId }) {
   useEffect(() => {
     const fetchClasses = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/smartskool/schools/${schoolId}/classrooms/`
+        const response = await axiosInstance.get(
+          `/schools/${schoolId}/classrooms/`
         );
         setClasses(response.data);
       } catch (error) {
@@ -34,8 +34,8 @@ function ClassManagement({ schoolId }) {
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8000/smartskool/schools/${schoolId}/teacher/users/`
+        const response = await axiosInstance.get(
+          `/schools/${schoolId}/teacher/users/`
         );
         setTeachers(response.data);
       } catch (error) {
@@ -50,8 +50,8 @@ function ClassManagement({ schoolId }) {
   // Handle creating a new class
   const handleCreateClass = async () => {
     try {
-      const response = await axios.post(
-        `http://localhost:8000/smartskool/schools/${schoolId}/create/classroom/`,
+      const response = await axiosInstance.post(
+        `/schools/${schoolId}/create/classroom/`,
         newClass,
         {
           headers: {

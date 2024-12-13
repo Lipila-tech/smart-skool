@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./css/login.css";
-import axios from 'axios';
+import axiosInstance from '../../src/api/axios';
 
 
 const Login = () => {
@@ -29,8 +29,8 @@ const Login = () => {
         password: parentPassword,
       };
 
-      const response = await axios.post(
-        'http://localhost:8000/smartskool/login/root/',
+      const response = await axiosInstance.post(
+        '/authentication/login/root/',
         data,
         {
           headers: {
@@ -51,9 +51,9 @@ const Login = () => {
 
     } catch (error) {
       // Handle error scenarios
-      console.error('Login Error:', error);
+      setError(error.response.data.detail)
       if (error.response && error.response.data) {
-        alert(`Login failed: ${error.response.data.detail || 'Invalid credentials'}`);
+        alert(`Login failed: ${error || 'Invalid credentials'}`);
       } else {
         alert('An error occurred. Please try again.');
       }
