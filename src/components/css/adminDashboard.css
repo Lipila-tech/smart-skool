@@ -87,7 +87,7 @@
 
 
 .reduced-size {
-  display: none; 
+  display: none;
 }
 
 .hidden-header {
@@ -103,37 +103,46 @@
 
 /* Style for admin-link */
 .admin-link {
-  text-decoration: none; /* Removes the underline */
-  color: white; /* Makes the link text white */
-  font-weight: bold; /* Makes the link text bold */
+  text-decoration: none;
+  /* Removes the underline */
+  color: white;
+  /* Makes the link text white */
+  font-weight: bold;
+  /* Makes the link text bold */
 }
 
 .admin-link:hover {
-  color: #f0f0f0; /* Optional: Add a hover effect for better user interaction */
+  color: #f0f0f0;
+  /* Optional: Add a hover effect for better user interaction */
 }
 
 /* Navbar Customization */
 .navbar {
-  background-color: #007bff !important; /* Blue background */
+  background-color: #007bff !important;
+  /* Blue background */
 }
 
 .navbar-brand h1 {
-  font-size: 1.5rem; /* Brand font size */
+  font-size: 1.5rem;
+  /* Brand font size */
   color: white;
 }
 
 .nav-link {
-  color: white !important; /* Make links white */
+  color: white !important;
+  /* Make links white */
   font-size: 1rem;
 }
 
 .nav-link:hover {
   text-decoration: underline;
-  color: #ffc107 !important; /* Highlight on hover */
+  color: #ffc107 !important;
+  /* Highlight on hover */
 }
 
 .vh-100 {
-  height: 100vh !important; /* Full height for vertical layout */
+  height: 100vh !important;
+  /* Full height for vertical layout */
 }
 
 @media (max-width: 992px) {
@@ -142,7 +151,8 @@
     width: 100%;
   }
 
-  .navbar-brand, .navbar-nav {
+  .navbar-brand,
+  .navbar-nav {
     text-align: center;
   }
 
@@ -153,7 +163,8 @@
 
 /* Ensure Sidebar Styles Apply */
 .sidebar-navbar {
-  background-color: #004085 !important; /* Example blue background */
+  background-color: #004085 !important;
+  /* Example blue background */
 }
 
 .sidebar-navbar .nav-link {
@@ -161,7 +172,8 @@
 }
 
 .sidebar-navbar .nav-link:hover {
-  color: #d4edda !important; /* Light green on hover */
+  color: #d4edda !important;
+  /* Light green on hover */
 }
 
 /* Ensure Dropdown Works on Small Screens */
@@ -196,7 +208,7 @@
 }
 
 .sidebar-navbar {
-  width: 250px;
+  width: 200px;
   min-height: 100vh;
   position: sticky;
   top: 0;
@@ -206,7 +218,7 @@
 
 .content-area {
   margin-left: 250px;
-  width: calc(100% - 250px);
+  width: calc(100% - 200px);
   padding: 20px;
 }
 
@@ -220,6 +232,7 @@
     width: 100%;
     position: relative;
     min-height: auto;
+    flex-direction: row;
   }
 
   .content-area {
@@ -234,15 +247,4 @@
   display: flex;
   height: 100vh;
   background-color: #f4f7fc;
-}
-
-.sidebar {
-  width: 230px;
-  background-color: #1e4360;
-  color: white;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  /* justify-content: space-between; */
-  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
 }
