@@ -66,6 +66,7 @@ function AdminDashboard({ schoolId }) {
           variant="dark"
           expand="lg"
           className="sidebar-navbar"
+          expanded={isNavCollapsed}
         >
           <Navbar.Brand className="text-center w-100 py-3 d-flex align-items-center justify-content-center">
             <img
@@ -80,9 +81,9 @@ function AdminDashboard({ schoolId }) {
             />
             <h1 style={{ fontSize: "1.2rem", color: "white", margin: 0 }}>Smart Skool</h1>
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="flex-column w-100">
+          <Navbar.Toggle aria-controls="sidebar-nav" onClick={handleToggle} />
+          <Navbar.Collapse id="sidebar-nav">
+          <Nav className="flex-column w-100" onClick={handleNavLinkClick}>
               <Nav.Link as={Link} to="/admin/dashboard/" className="text-white">
                 Dashboard
               </Nav.Link>
