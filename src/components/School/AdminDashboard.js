@@ -4,9 +4,17 @@ import "../css/adminDashboard.css";
 import AdminLinks from "./AdminLinks";
 import { Outlet } from 'react-router-dom';
 import axiosInstance from '../../api/axios';
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 
 function AdminDashboard({ schoolId }) {
+  const [schoolName, setSchoolName] = useState(null);
+
+  useEffect(() => {
+    // Retrieve schoolName from localStorage on component mount
+    const storedSchoolName = localStorage.getItem('school');
+    setSchoolName(storedSchoolName);
+  }, []);
   const [dashboardData, setDashboardData] = useState({
     students: 0,
     teachers: 0,
@@ -15,6 +23,17 @@ function AdminDashboard({ schoolId }) {
     outstandingPayments: 0,
     receivedPayments: 0,
   });
+  const [isNavCollapsed, setIsNavCollapsed] = useState(false);
+
+  const handleToggle = () => {
+    setIsNavCollapsed(!isNavCollapsed);
+  };
+
+  const handleNavLinkClick = () => {
+    if (isNavCollapsed) {
+      setIsNavCollapsed(false); // Close the menu
+    }
+  };
 
 
   const location = useLocation(); // Hook to get the current location
@@ -39,51 +58,79 @@ function AdminDashboard({ schoolId }) {
   }, [schoolId]);
 
   return (
+    <>
     <div className="dashboard-layout">
-      {/* Sidebar for navigation */}
-      <div className="sidebar">
-        <Link to="/admin/dashboard/" className='admin-link'>Dashboard</Link>
-        <AdminLinks />
-      </div>
+      {/* Sidebar Navbar */}
+      <Navbar
+        bg="primary"
+        variant="dark"
+        expand="lg"
+        className="sidebar-navbar"
+      >
+        <Navbar.Brand className="text-center w-100 py-3">
+          <h1 style={{ fontSize: "1.2rem", color: "white" }}>Smart Skool</h1>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="flex-column w-100">
+            <Nav.Link as={Link} to="/admin/dashboard/" className="text-white">
+              Dashboard
+            </Nav.Link>
+            <AdminLinks />
+          </Nav>
+        </Navbar.Collapse>
+        <div className="mt-auto text-center text-white p-3">
+          <h4 className="mb-1" style={{ fontSize: "1rem" }}>Welcome: {schoolName}</h4>
+          <p className="mb-0" style={{ fontSize: "0.9rem" }}>Id: {schoolId}</p>
+        </div>
+      </Navbar>
 
-      {/* Main content area */}
-      <div className="content-container">
-        <p className="dashboard-path">{location.pathname}</p>
-        <Outlet />
-        <h1 className={`dashboard-header ${!isDashboardPage ? 'hidden-header' : ''}`}>Summary</h1>
+      {/* Main Content */}
+      <div className="content-area">
+        <div className="content-container">
+          <p className="dashboard-path">{location.pathname}</p>
+          <Outlet />
+          <h1
+            className={`dashboard-header ${!isDashboardPage ? "hidden-header" : ""}`}
+          >
+            Summary
+          </h1>
 
-        {/* Conditionally render the cards or reduce their size */}
-        <div
-          className={`dashboard-cards-container ${!isDashboardPage ? 'reduced-size' : ''}`}
-        >
-          <div className="dashboard-card students-card">
-            <h3>Students</h3>
-            <p>{dashboardData.students}</p>
-          </div>
-          <div className="dashboard-card teachers-card">
-            <h3>Teachers</h3>
-            <p>{dashboardData.teachers}</p>
-          </div>
-          <div className="dashboard-card sponsors-card">
-            <h3>Sponsors</h3>
-            <p>{dashboardData.sponsors}</p>
-          </div>
-          <div className="dashboard-card outstanding-payments-card">
-            <h3>Outstanding Payments</h3>
-            <p>K{dashboardData.outstandingPayments.toLocaleString()}</p>
-          </div>
-          <div className="dashboard-card received-payments-card">
-            <h3>Received Payments</h3>
-            <p>K{dashboardData.receivedPayments.toLocaleString()}</p>
-          </div>
-          <div className="dashboard-card classrooms-card">
-            <h3>Classrooms</h3>
-            <p>{dashboardData.classrooms.toLocaleString()}</p>
+          {/* Dashboard Cards */}
+          <div
+            className={`dashboard-cards-container ${
+              !isDashboardPage ? "reduced-size" : ""
+            }`}
+          >
+            <div className="dashboard-card students-card">
+              <h3>Students</h3>
+              <p>{dashboardData.students}</p>
+            </div>
+            <div className="dashboard-card teachers-card">
+              <h3>Teachers</h3>
+              <p>{dashboardData.teachers}</p>
+            </div>
+            <div className="dashboard-card sponsors-card">
+              <h3>Sponsors</h3>
+              <p>{dashboardData.sponsors}</p>
+            </div>
+            <div className="dashboard-card outstanding-payments-card">
+              <h3>Outstanding Payments</h3>
+              <p>K{dashboardData.outstandingPayments.toLocaleString()}</p>
+            </div>
+            <div className="dashboard-card received-payments-card">
+              <h3>Received Payments</h3>
+              <p>K{dashboardData.receivedPayments.toLocaleString()}</p>
+            </div>
+            <div className="dashboard-card classrooms-card">
+              <h3>Classrooms</h3>
+              <p>{dashboardData.classrooms.toLocaleString()}</p>
+            </div>
           </div>
         </div>
-        
       </div>
     </div>
+  </>
   );
 }
 

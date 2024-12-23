@@ -20,14 +20,12 @@ import ManageStudents from "./components/School/ManageStudents";
 import TeacherManagement from "./components/School/TeacherManagement";
 import ClassManagement from "./components/School/ClassManagement";
 import Announcements from "./components/School/Announcements";
-import Header from "./components/common/header";
 import AddUser from "./components/School/AddUser";
 
 function App() {
   const schoolId = localStorage.getItem('schoolId'); // Retrieve schoolId from localStorage
   return (
     <Router>
-      <Header />
       <div>
         <Routes>
           <Route path="/" element={<Login />} />

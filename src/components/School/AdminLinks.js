@@ -1,35 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 
 const AdminLinks = () => {
   return (
     <nav>
-      <ul>
-        <li>
-          <Link to="/admin/dashboard/payment-management">Payment Management</Link>
-        </li>
-        <li>
-          <Link to="/admin/dashboard/add-student">Add Student</Link>
-        </li>
-        <li>
-          <Link to="/admin/dashboard/add-user">Add User</Link>
-        </li>
-        <li>
-          <Link to="/admin/dashboard/manage-students">Manage Students</Link>
-        </li>
-        <li>
-          <Link to="/admin/dashboard/teacher-management">Teacher Management</Link>
-        </li>
-        <li>
-          <Link to="/admin/dashboard/class-management">Class Management</Link>
-        </li>
-        <li>
-          <Link to="/admin/dashboard/announcements">Announcements</Link>
-        </li>
-        <li>
-          <Link to="logout">Logout</Link>
-        </li>
-      </ul>
+      
+        
+          <Nav.Link to="/admin/dashboard/payment-management">Payment Management</Nav.Link>
+        
+        
+          <Nav.Link to="/admin/dashboard/add-student">Add Student</Nav.Link>
+        
+        
+          <Nav.Link to="/admin/dashboard/add-user">Add User</Nav.Link>
+        
+        
+          <Nav.Link to="/admin/dashboard/manage-students">Manage Students</Nav.Link>
+        
+        
+          <Nav.Link to="/admin/dashboard/teacher-management">Teacher Management</Nav.Link>
+        
+        
+          <Nav.Link to="/admin/dashboard/class-management">Class Management</Nav.Link>
+        
+        
+          <Nav.Link to="/admin/dashboard/announcements">Announcements</Nav.Link>
+        
+        
+          <Nav.Link to="logout">Logout</Nav.Link>
+        
+      
     </nav>
   );
 };
