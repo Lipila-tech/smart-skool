@@ -4,7 +4,8 @@ import axiosInstance from '../../api/axios';
 
 function AddStudent({ schoolId }) {
   const [form, setForm] = useState({
-    name: "",
+    firstname: "",
+    lastname: "",
     age: "",
     classroom: "",
     sponsor: "",
@@ -101,20 +102,33 @@ function AddStudent({ schoolId }) {
       <h2>Add New Student</h2>
       <form onSubmit={handleSubmit} className="add-student-form">
         <label className="form-label">
-          Name:
+          First Name:
           <input
             type="text"
-            name="name"
-            value={form.name}
+            name="firstname"
+            value={form.firstname}
             onChange={handleChange}
             required
+            placeholder="First name"
+            className="form-input"
+          />
+        </label>
+        <label className="form-label">
+          Last Name:
+          <input
+            type="text"
+            name="lastname"
+            value={form.lastname}
+            onChange={handleChange}
+            required
+            placeholder="Last name"
             className="form-input"
           />
         </label>
         <label className="form-label">
           D.O.B:
           <input
-            type="number"
+            type="date"
             name="dob"
             value={form.age}
             onChange={handleChange}
@@ -123,7 +137,7 @@ function AddStudent({ schoolId }) {
           />
         </label>
         <label className="form-label">
-          Class:
+          Assign Class:
           <div className="sponsor-container">
             <select
               name="classroom"
@@ -144,7 +158,7 @@ function AddStudent({ schoolId }) {
           </div>
         </label>
         <label className="form-label">
-          Sponsor:
+          Select Sponsor:
           <div className="sponsor-container">
             <select
               name="sponsor"
@@ -167,7 +181,7 @@ function AddStudent({ schoolId }) {
               onClick={() => setShowModal(true)}
               className="form-button"
             >
-              Add Sponsor
+              + New Sponsor
             </button>
           </div>
         </label>
@@ -179,7 +193,7 @@ function AddStudent({ schoolId }) {
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h3>Add New Sponsor</h3>
+            <h3>Create New Sponsor</h3>
             <input
               type="text"
               value={newSponsor}
