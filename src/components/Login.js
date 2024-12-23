@@ -39,9 +39,6 @@ const Login = () => {
         }
       );
 
-      // Handle successful login
-      console.log('Login Successful:', response.data);
-
       // Store user type or token if needed
       localStorage.setItem('userType', 'admin'); // Adjust based on API response
       localStorage.setItem('token', response.data.token); // Save token if provided
