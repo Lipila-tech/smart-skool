@@ -23,6 +23,7 @@ import AddUser from "./components/School/AddUser";
 import RootUserLogin from "./components/RootUserLogin";
 import MemberUserLogin from "./components/MemberUserLogin";
 import Register from "./components/Register";
+import HomePage from "./components/HomePage";
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
     <Router>
       <div>
         <Routes>
-        {/* <Route path="/" element={<Login />} /> */}
+        <Route path="/" element={<HomePage />} />
         <Route path="/root-login" element={<RootUserLogin />} />
         <Route path="/member-login" element={<MemberUserLogin />} />
         <Route path="/register" element={<Register />} />
