@@ -42,9 +42,9 @@ function App() {
           
           {/* Parent Dashboard with Nested Routes */}
           <Route
-            path="/dashboard"
+            path="/member/dashboard"
             element={
-              <ProtectedRoute requiredRole="parent">
+              <ProtectedRoute requiredRole="sponsor">
                 <ParentDashboard />
               </ProtectedRoute>
             }

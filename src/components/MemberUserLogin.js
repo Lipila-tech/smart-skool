@@ -35,7 +35,7 @@ const MemberUserLogin = () => {
                 }
             );
 
-            localStorage.setItem('userType', 'member');
+            localStorage.setItem('userType', 'sponsor');
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('school', response.data.school_name);
             localStorage.setItem('schoolId', response.data.school_id);
