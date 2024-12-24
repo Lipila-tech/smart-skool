@@ -20,11 +20,10 @@ function ParentDashboard({ schoolId }) {
   }, []);
   const [dashboardData, setDashboardData] = useState({
     students: 0,
-    teachers: 0,
-    sponsors: 0,
-    classrooms: 0,
+    schools: 0,
+    communications: 0,
     outstandingPayments: 0,
-    receivedPayments: 0,
+    payments: 0,
   });
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
 
@@ -42,7 +41,7 @@ function ParentDashboard({ schoolId }) {
   const location = useLocation(); // Hook to get the current location
 
   // Check if the current path is for the dashboard or some other component
-  const isDashboardPage = location.pathname === '/parent/dashboard/';
+  const isDashboardPage = location.pathname === '/member/dashboard/';
 
 
   useEffect(() => {
@@ -87,7 +86,7 @@ function ParentDashboard({ schoolId }) {
           <Navbar.Toggle aria-controls="sidebar-nav" onClick={handleToggle} />
           <Navbar.Collapse id="sidebar-nav">
           <Nav className="flex-column w-100" onClick={handleNavLinkClick}>
-              <Nav.Link as={Link} to="/parent/dashboard/" className="text-white">
+              <Nav.Link as={Link} to="/member/dashboard/" className="text-white">
                 Dashboard
               </Nav.Link>
               <ParentLinks />
@@ -95,7 +94,7 @@ function ParentDashboard({ schoolId }) {
           </Navbar.Collapse>
           <div className="mt-auto text-center text-white p-3">
             <h4 className="mb-1" style={{ fontSize: "1rem" }}>Welcome to: {schoolName}</h4>
-            <p className="mb-0" style={{ fontSize: "0.9rem" }}> {userNames}</p>
+            <p className="mb-0" style={{ fontSize: "0.9rem" }}>User: {userNames}</p>
           </div>
         </Navbar>
 
@@ -120,24 +119,20 @@ function ParentDashboard({ schoolId }) {
                 <p>{dashboardData.students}</p>
               </div>
               <div className="dashboard-card teachers-card">
-                <h3>Teachers</h3>
-                <p>{dashboardData.teachers}</p>
-              </div>
-              <div className="dashboard-card sponsors-card">
-                <h3>Sponsors</h3>
-                <p>{dashboardData.sponsors}</p>
+                <h3>Schools</h3>
+                <p>{dashboardData.schools}</p>
               </div>
               <div className="dashboard-card outstanding-payments-card">
                 <h3>Outstanding Payments</h3>
                 <p>K{dashboardData.outstandingPayments.toLocaleString()}</p>
               </div>
               <div className="dashboard-card received-payments-card">
-                <h3>Received Payments</h3>
-                <p>K{dashboardData.receivedPayments.toLocaleString()}</p>
+                <h3>Total Payments</h3>
+                <p>K{dashboardData.payments.toLocaleString()}</p>
               </div>
               <div className="dashboard-card classrooms-card">
-                <h3>Classrooms</h3>
-                <p>{dashboardData.classrooms.toLocaleString()}</p>
+                <h3>Communications</h3>
+                <p>{dashboardData.communications.toLocaleString()}</p>
               </div>
             </div>
           </div>
