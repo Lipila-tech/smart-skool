@@ -194,13 +194,24 @@ function AddStudent({ schoolId }) {
         <div className="modal-overlay">
           <div className="modal-content">
             <h3>Create New Sponsor</h3>
-            <input
-              type="text"
-              value={newSponsor}
-              onChange={(e) => setNewSponsor(e.target.value)}
-              placeholder="Enter sponsor first name"
-              className="form-input"
-            />
+            <label className="form-label"> Sponsor Names:
+              <input
+                type="text"
+                value={newSponsor}
+                onChange={(e) => setNewSponsor(e.target.value)}
+                placeholder="Firstname Lastname"
+                className="form-input"
+              />
+            </label>
+            <label className="form-label"> Sponsor Mobile#:
+              <input
+                type="text"
+                value={newSponsor}
+                onChange={(e) => setNewSponsor(e.target.value)}
+                placeholder="0975443322"
+                className="form-input"
+              />
+            </label>
             <div className="modal-actions">
               <button onClick={handleAddSponsor} className="form-button">
                 Add

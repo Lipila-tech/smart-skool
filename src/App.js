@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Logout
  from "./components/logout";
@@ -21,6 +20,10 @@ import TeacherManagement from "./components/School/TeacherManagement";
 import ClassManagement from "./components/School/ClassManagement";
 import Announcements from "./components/School/Announcements";
 import AddUser from "./components/School/AddUser";
+import RootUserLogin from "./components/RootUserLogin";
+import MemberUserLogin from "./components/MemberUserLogin";
+import Register from "./components/Register";
+
 
 function App() {
   const schoolId = localStorage.getItem('schoolId'); // Retrieve schoolId from localStorage
@@ -28,9 +31,11 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="logout" element={<Logout />} />
-
+        {/* <Route path="/" element={<Login />} /> */}
+        <Route path="/root-login" element={<RootUserLogin />} />
+        <Route path="/member-login" element={<MemberUserLogin />} />
+        <Route path="/register" element={<Register />} />
+          
           {/* Parent Dashboard with Nested Routes */}
           <Route
             path="/dashboard"
