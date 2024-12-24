@@ -28,15 +28,15 @@ function Header() {
                         Home
                     </Nav.Link>
                     <NavDropdown title="Resources">
-                        <NavDropdown.Item as={Link} to="/articles">
-                            Articles
+                        <NavDropdown.Item as={Link} to="/about">
+                            About
                         </NavDropdown.Item>
-                        <NavDropdown.Item as={Link} to="/courses">
-                            Courses
+                        <NavDropdown.Item as={Link} to="/solutions">
+                            Solutions
                         </NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link as={Link} to="/contact">
-                        Contact
+                    <Nav.Link as={Link} to="https://lipila.tech/contact-us/">
+                        Contact Us
                     </Nav.Link>
                 </Nav>
             </Navbar.Collapse>

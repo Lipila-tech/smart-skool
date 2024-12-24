@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './css/HomePage.css';
 import Header from './common/Header';
-
+import Footer from './common/Footer';
 
 const HomePage = () => {
     return (
@@ -43,11 +43,8 @@ const HomePage = () => {
                         <Link to="/register" className="btn secondary">Sign Up</Link>
                     </div>
                 </section>
-
-                <footer className="home-footer">
-                    <p>&copy; {new Date().getFullYear()} Smart Skool. All rights reserved.</p>
-                </footer>
             </div>
+            <Footer />
         </div>
     );
 };
