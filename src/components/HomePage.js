@@ -36,8 +36,8 @@ const HomePage = () => {
         <h2>Get Started Today!</h2>
         <p>Join the growing community of schools benefiting from Smart Skool.</p>
         <div className="cta-buttons">
-          <Link to="/login" className="btn primary">Login</Link>
-          <Link to="/signup" className="btn secondary">Sign Up</Link>
+          <Link to="/member-login" className="btn primary">Login</Link>
+          <Link to="/register" className="btn secondary">Sign Up</Link>
         </div>
       </section>
 

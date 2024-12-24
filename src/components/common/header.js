@@ -1,21 +1,10 @@
 import React from "react";
-import { useEffect, useState } from 'react';
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import {
     Link
 } from "react-router-dom";
 
 function Header() {
-    const [schoolName, setSchoolName] = useState(null);
-    const [schoolId, setSchoolId] = useState(null);
-
-    useEffect(() => {
-        // Retrieve schoolName from localStorage on component mount
-        const storedSchoolName = localStorage.getItem('school');
-        const storedSchoolId = localStorage.getItem('schoolId');
-        setSchoolName(storedSchoolName);
-        setSchoolId(storedSchoolId);
-    }, []);
     return (
         < Navbar bg="light" expand="lg" >
             <Navbar.Brand>
@@ -38,9 +27,6 @@ function Header() {
                     <Nav.Link as={Link} to="/contact">
                         Contact
                     </Nav.Link>
-
-                    <h4>Welcome: {schoolName} </h4>
-                    <p>Id: {schoolId}</p>
                 </Nav>
             </Navbar.Collapse>
         </Navbar >
