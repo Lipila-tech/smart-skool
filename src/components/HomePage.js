@@ -1,8 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
 import './css/HomePage.css';
 import Header from './common/Header';
 import Footer from './common/Footer';
+import CallToAction from './common/CallToAction';
+
 
 const HomePage = () => {
     return (
@@ -35,15 +36,8 @@ const HomePage = () => {
                         </div>
                     </div>
                 </section>
-                <section className="cta-section">
-                    <h2>Get Started Today!</h2>
-                    <p>Join the growing community of schools benefiting from Smart Skool.</p>
-                    <div className="cta-buttons">
-                        <Link to="/member-login" className="btn primary">Login</Link>
-                        <Link to="/register" className="btn secondary">Sign Up</Link>
-                    </div>
-                </section>
             </div>
+            <CallToAction/>
             <Footer />
         </div>
     );

@@ -24,7 +24,8 @@ import RootUserLogin from "./components/RootUserLogin";
 import MemberUserLogin from "./components/MemberUserLogin";
 import Register from "./components/Register";
 import HomePage from "./components/HomePage";
-
+import About from "./components/About";
+import Solutions from "./components/Solutions";
 
 function App() {
   const schoolId = localStorage.getItem('schoolId'); // Retrieve schoolId from localStorage
@@ -36,6 +37,8 @@ function App() {
         <Route path="/root-login" element={<RootUserLogin />} />
         <Route path="/member-login" element={<MemberUserLogin />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/solutions" element={<Solutions />} />
           
           {/* Parent Dashboard with Nested Routes */}
           <Route
