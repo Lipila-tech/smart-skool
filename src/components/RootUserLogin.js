@@ -57,8 +57,8 @@ const RootUserLogin = () => {
         {error && <p className="error-message">{error}</p>}
         <form onSubmit={handleRootLogin}>
           <input
-            type="email"
-            placeholder="Email"
+            type="username"
+            placeholder="Username"
             value={adminEmail}
             onChange={(e) => setadminEmail(e.target.value)}
             className="login-input"
