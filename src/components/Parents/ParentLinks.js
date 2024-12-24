@@ -1,29 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { Nav } from "react-bootstrap";
 const ParentLinks = () => {
     return (
         <nav>
-            <ul>
-                <li>
-                    <Link to="make-payment">Make a Payment</Link>
-                </li>
-                <li>
-                    <Link to="payment-history">Payment History</Link>
-                </li>
-                <li>
-                    <Link to="student-progress">Student Progress</Link>
-                </li>
-                <li>
-                    <Link to="profile">Profile</Link>
-                </li>
-                <li>
-                    <Link to="communication">Communication</Link>
-                </li>
-                <li>
-                    <Link to="logout">Logout</Link>
-                </li>
-            </ul>
+            <Nav.Link as={Link} to="make-payment">Make a Payment</Nav.Link>
+
+            <Nav.Link as={Link} to="payment-history">Payment History</Nav.Link>
+
+            <Nav.Link as={Link} to="student-progress">Student Progress</Nav.Link>
+
+            <Nav.Link as={Link} to="profile">Profile</Nav.Link>
+
+            <Nav.Link as={Link} to="communication">Communication</Nav.Link>
+
+            <Nav.Link as={Link} to="logout">Logout</Nav.Link>
+
         </nav>
     );
 };
