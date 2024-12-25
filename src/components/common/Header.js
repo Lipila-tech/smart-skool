@@ -7,7 +7,7 @@ import "../css/Header.css";
 
 function Header() {
     return (
-        <Navbar bg="dark" expand="lg">
+        <Navbar bg="light" expand="lg">
             <Navbar.Brand className="brand">
                 <img
                     src="/ss-logo.png"
@@ -19,12 +19,12 @@ function Header() {
                         objectFit: "contain",
                     }}
                 />
-                <h1 style={{ fontSize: "1.2rem", color: "white", margin: 0 }}>Smart Skool</h1>
+                <h1 style={{ fontSize: "1.2rem", color: "green", margin: 0 }}>Smart Skool</h1>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="ml-auto">
-                    <Nav.Link as={Link} to="/" exact="true">
+            <Navbar.Collapse id="basic-navbar-na">
+                <Nav className="navbar-nav">
+                    <Nav.Link as={Link} to="/" exact="true" id="nav-link">
                         Home
                     </Nav.Link>
 
@@ -36,6 +36,9 @@ function Header() {
                     </Nav.Link>
                     <Nav.Link as={Link} to="https://lipila.tech/contact-us/">
                         Contact Us
+                    </Nav.Link>
+                    <Nav.Link as={Link} to="/member-login">
+                        Login
                     </Nav.Link>
                 </Nav>
             </Navbar.Collapse>

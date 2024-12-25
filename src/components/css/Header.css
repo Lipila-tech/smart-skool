@@ -22,27 +22,27 @@
   margin: 0;
 }
 
-.navbar-nav .nav-link {
+
+/* Navbar Customization */
+.navbar {
+  background-color: #007bff !important;
+  /* Blue background */
+}
+
+.navbar-brand h1 {
+  font-size: 1.5rem;
+  /* Brand font size */
   color: white;
-  margin-right: 15px;
 }
 
-.navbar-nav .nav-link:hover {
-  color: #d4d4d4;
+.nav-link {
+  color: rgb(25, 23, 23) !important;
+  /* Make links white */
+  font-size: 1rem;
 }
 
-.navbar-nav .nav-dropdown .dropdown-item {
-  color: black;
-}
-
-.navbar-nav .nav-dropdown .dropdown-item:hover {
-  background-color: #f8f9fa;
-}
-
-.navbar-toggler {
-  border-color: rgba(245, 245, 245, 0.1);
-}
-
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+.nav-link:hover {
+  text-decoration: underline;
+  color: #ffc107 !important;
+  /* Highlight on hover */
 }
