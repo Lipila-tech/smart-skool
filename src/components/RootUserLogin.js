@@ -36,7 +36,7 @@ const RootUserLogin = () => {
         }
       );
 
-      localStorage.setItem('userType', 'admin');
+      localStorage.setItem('userRole', 'admin');
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('school', response.data.school_name);
       localStorage.setItem('schoolId', response.data.school_id);

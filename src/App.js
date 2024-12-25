@@ -51,7 +51,7 @@ function App() {
 
           {/* Teacher Dashboard with Nested Routes */}
           <Route
-            path="/member/dashboard"
+            path="/teacher/dashboard"
             element={
               <ProtectedRoute requiredRole="teacher">
                 <TeacherDashboard userId={userId} />
@@ -66,7 +66,7 @@ function App() {
            <Route
             path="vendor/dashboard"
             element={
-              <ProtectedRoute requiredRole="teacher">
+              <ProtectedRoute requiredRole="vendor">
                 <VendorDashboard userId={userId}/>
               </ProtectedRoute>
             }
@@ -77,7 +77,7 @@ function App() {
 
           {/* Parent Dashboard with Nested Routes */}
           <Route
-            path="/member/dashboard"
+            path="/sponsor/dashboard"
             element={
               <ProtectedRoute requiredRole="sponsor">
                 <ParentDashboard userId={userId} />

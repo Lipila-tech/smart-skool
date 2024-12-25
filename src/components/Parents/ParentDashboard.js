@@ -10,13 +10,16 @@ import { Navbar, Nav } from "react-bootstrap";
 function ParentDashboard({ userId }) {
   const [schoolName, setSchoolName] = useState(null);
   const [userNames, setUserNames] = useState(null);
+  const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
     // Retrieve schoolName from localStorage on component mount
     const storedSchoolName = localStorage.getItem('school');
     const storedUserName = localStorage.getItem('fullname');
+    const storedUserRole = localStorage.getItem('userRole');
     setSchoolName(storedSchoolName);
     setUserNames(storedUserName);
+    setUserRole(storedUserRole);
   }, []);
   const [dashboardData, setDashboardData] = useState({
     students: 0,
@@ -41,7 +44,7 @@ function ParentDashboard({ userId }) {
   const location = useLocation(); // Hook to get the current location
 
   // Check if the current path is for the dashboard or some other component
-  const isDashboardPage = location.pathname === '/member/dashboard/';
+  const isDashboardPage = location.pathname === '/sponsor/dashboard/';
 
 
   useEffect(() => {
@@ -86,7 +89,7 @@ function ParentDashboard({ userId }) {
           <Navbar.Toggle aria-controls="sidebar-nav" onClick={handleToggle} />
           <Navbar.Collapse id="sidebar-nav">
           <Nav className="flex-column w-100" onClick={handleNavLinkClick}>
-              <Nav.Link as={Link} to="/member/dashboard/" className="text-white">
+              <Nav.Link as={Link} to="/sponsor/dashboard/" className="text-white">
                 Dashboard
               </Nav.Link>
               <ParentLinks />
@@ -95,6 +98,7 @@ function ParentDashboard({ userId }) {
           <div className="mt-auto text-center text-white p-3">
             <h4 className="mb-1" style={{ fontSize: "1rem" }}>Welcome to: {schoolName}</h4>
             <p className="mb-0" style={{ fontSize: "0.9rem" }}>User: {userNames}</p>
+            <p className="mb-0" style={{ fontSize: "0.9rem" }}>{ userRole }</p>
           </div>
         </Navbar>
 

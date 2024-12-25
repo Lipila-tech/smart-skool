@@ -7,13 +7,19 @@ import axiosInstance from '../../api/axios';
 import { Navbar, Nav } from "react-bootstrap";
 
 
-function TeacherDashboard({ schoolId }) {
+function TeacherDashboard({ userId }) {
   const [schoolName, setSchoolName] = useState(null);
+  const [schoolId, setSchoolId] = useState(null);
+  const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
     // Retrieve schoolName from localStorage on component mount
     const storedSchoolName = localStorage.getItem('school');
+    const storedSchoolId = localStorage.getItem('schoolId');
+    const storedUserRole = localStorage.getItem('userRole');
     setSchoolName(storedSchoolName);
+    setSchoolId(storedSchoolId);
+    setUserRole(storedUserRole);
   }, []);
   const [dashboardData, setDashboardData] = useState({
     students: 0,
@@ -39,7 +45,7 @@ function TeacherDashboard({ schoolId }) {
   const location = useLocation(); // Hook to get the current location
 
   // Check if the current path is for the dashboard or some other component
-  const isDashboardPage = location.pathname === '/admin/dashboard/';
+  const isDashboardPage = location.pathname === '/teacher/';
 
 
   useEffect(() => {
@@ -84,15 +90,16 @@ function TeacherDashboard({ schoolId }) {
           <Navbar.Toggle aria-controls="sidebar-nav" onClick={handleToggle} />
           <Navbar.Collapse id="sidebar-nav">
           <Nav className="flex-column w-100" onClick={handleNavLinkClick}>
-              <Nav.Link as={Link} to="/admin/dashboard/" className="text-white">
+              <Nav.Link as={Link} to="/teacher/" className="text-white">
                 Dashboard
               </Nav.Link>
               <TeacherLinks />
             </Nav>
           </Navbar.Collapse>
           <div className="mt-auto text-center text-white p-3">
-            <h4 className="mb-1" style={{ fontSize: "1rem" }}>{schoolName}</h4>
-            <p className="mb-0" style={{ fontSize: "0.9rem" }}>School ID: {schoolId}</p>
+            <h5 className="mb-1" style={{ fontSize: "1rem" }}>School ID: {schoolId}</h5>
+            <p className="mb-0" style={{ fontSize: "0.9rem" }}>{userRole}</p>
+            <p className="mb-0" style={{ fontSize: "0.9rem" }}>{schoolName}</p>
           </div>
         </Navbar>
 
