@@ -7,7 +7,7 @@ import axiosInstance from '../../api/axios';
 import { Navbar, Nav } from "react-bootstrap";
 
 
-function ParentDashboard({ schoolId }) {
+function ParentDashboard({ userId }) {
   const [schoolName, setSchoolName] = useState(null);
   const [userNames, setUserNames] = useState(null);
 
@@ -48,7 +48,7 @@ function ParentDashboard({ schoolId }) {
     const fetchDashboardData = async () => {
       try {
         const response = await axiosInstance.get(
-          `/schools/dashboard/${schoolId}/`
+          `/members/dashboard/${userId}/`
         );
         setDashboardData(response.data);
       } catch (error) {
@@ -57,7 +57,7 @@ function ParentDashboard({ schoolId }) {
     };
 
     fetchDashboardData();
-  }, [schoolId]);
+  }, [userId]);
 
   return (
     <>

@@ -1,51 +1,54 @@
-// src/components/parent/PaymentHistory.js
-import React, { useEffect, useState } from "react";
-import "../css/paymentHistory.css";
+import React, { useState, useEffect } from 'react';
+import '../css/PaymentHistory.css';
+import axiosInstance from '../../api/axios';
 
-function PaymentHistory() {
-  const [payments, setPayments] = useState([]);
 
+function PaymentHistory({ userId }) {
+  const [transactions, setTransactionsData] = useState([]);
+  
   useEffect(() => {
-    // Replace with your actual API endpoint
-    fetch("/api/parent/payments")
-      .then(response => response.json())
-      .then(data => setPayments(data))
-      .catch(error => console.error("Error fetching payments:", error));
-  }, []);
+    const fetchTransactionData = async () => {
+      try {
+        const response = await axiosInstance.get(
+          `transaction/history/?sponsor-id=${userId}`
+        );
+        console.log(response.data);
+        setTransactionsData(response.data);
+      } catch (error) {
+        console.error('Error fetching transaction data:', error.response.data);
+      }
+    };
+
+    fetchTransactionData();
+  }, [userId]);
 
   return (
     <div className="history-container">
-      <h2>History</h2>
+      <h2>Payment History</h2>
       <p>Here is a record of your recent activities:</p>
 
       <table className="history-table">
         <thead>
           <tr>
             <th>Date</th>
-            <th>Transaction</th>
             <th>Amount</th>
+            <th>Reference</th>
+            <th>Description</th>
+            <th>Wallet Type</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>2024-10-10</td>
-            <td>Tuition Payment</td>
-            <td>K500</td>
-            <td>Completed</td>
-          </tr>
-          <tr>
-            <td>2024-09-15</td>
-            <td>Library Fee</td>
-            <td>K80</td>
-            <td>Pending</td>
-          </tr>
-          <tr>
-            <td>2024-08-20</td>
-            <td>Sports Equipment</td>
-            <td>K125</td>
-            <td>Completed</td>
-          </tr>
+          {transactions.map((payment, index) => (
+            <tr key={index}>
+              <td>{payment.created_at}</td>
+              <td>{payment.amount}</td>
+              <td>{payment.reference}</td>
+              <td>{payment.description}</td>
+              <td>{payment.wallet_type}</td>
+              <td>{payment.status}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

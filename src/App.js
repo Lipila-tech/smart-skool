@@ -28,7 +28,8 @@ import About from "./components/About";
 import Solutions from "./components/Solutions";
 
 function App() {
-  const schoolId = localStorage.getItem('schoolId'); // Retrieve schoolId from localStorage
+  const schoolId = localStorage.getItem('schoolId');
+  const userId = localStorage.getItem('userId');
   return (
     <Router>
       <div>
@@ -45,15 +46,15 @@ function App() {
             path="/member/dashboard"
             element={
               <ProtectedRoute requiredRole="sponsor">
-                <ParentDashboard />
+                <ParentDashboard userId={userId}/>
               </ProtectedRoute>
             }
           >
             {/* Nested routes for ParentDashboard */}
-            <Route path="make-payment" element={<MakePayment />} />
-            <Route path="payment-history" element={<PaymentHistory />} />
-            <Route path="student-progress" element={<StudentProgress />} />
-            <Route path="profile" element={<Profile />} />
+            <Route path="make-payment" element={<MakePayment userId={userId}/>} />
+            <Route path="payment-history" element={<PaymentHistory userId={userId} />} />
+            <Route path="student-progress" element={<StudentProgress userId={userId}/>} />
+            <Route path="profile" element={<Profile userId={userId}/>} />
             <Route path="communication" element={<Communication />} />
             <Route path="logout" element={<Logout/>}/>
           </Route>
