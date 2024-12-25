@@ -55,6 +55,7 @@ const RootUserLogin = () => {
 
   return (
     <div>
+      <Header />
       <div className="login-container">
         <div className="login-form">
           <h3>Admin Login</h3>

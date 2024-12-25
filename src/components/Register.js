@@ -28,6 +28,7 @@ const Register = () => {
 
   return (
     <div>
+      <Header />
       <div className='login-container'>
         <div className="login-form">
           <h2>Register</h2>
