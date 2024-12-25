@@ -92,7 +92,7 @@ const MemberUserLogin = () => {
                             onChange={(e) => setmemberPassword(e.target.value)}
                             className="login-input"
                         />
-                        <button type="submit" className="login-button">Login</button>
+                        <button type="submit" className="lr-button">Login</button>
                     </form>
                     <div className="links">
                         <Link to="/root-login">Admin Login</Link>
