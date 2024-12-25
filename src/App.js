@@ -66,9 +66,9 @@ function App() {
            <Route
             path="vendor/dashboard"
             element={
-              <ProtectedRoute requiredRole="vendor">
+              // <ProtectedRoute requiredRole="vendor">
                 <VendorDashboard userId={userId}/>
-              </ProtectedRoute>
+              // </ProtectedRoute>
             }
           >
             {/* Nested routes for ParentDashboard */}
