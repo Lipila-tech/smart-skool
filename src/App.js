@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Logout
- from "./components/logout";
+  from "./components/logout";
 // Import Parent Components
 import ParentDashboard from "./components/Parents/ParentDashboard";
 import PaymentHistory from "./components/Parents/PaymentHistory";
@@ -20,6 +20,14 @@ import TeacherManagement from "./components/School/TeacherManagement";
 import ClassManagement from "./components/School/ClassManagement";
 import Announcements from "./components/School/Announcements";
 import AddUser from "./components/School/AddUser";
+
+// Import Teacher Components
+import TeacherDashboard from "./components/Teachers/TeacherDashboard";
+
+// Import Vendor Components
+import VendorDashboard from "./components/Vendors/VendorDashboard";
+
+// Import Other Components
 import RootUserLogin from "./components/RootUserLogin";
 import MemberUserLogin from "./components/MemberUserLogin";
 import Register from "./components/Register";
@@ -34,29 +42,55 @@ function App() {
     <Router>
       <div>
         <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/root-login" element={<RootUserLogin />} />
-        <Route path="/member-login" element={<MemberUserLogin />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/solutions" element={<Solutions />} />
-          
+          <Route path="/" element={<HomePage />} />
+          <Route path="/root-login" element={<RootUserLogin />} />
+          <Route path="/member-login" element={<MemberUserLogin />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/solutions" element={<Solutions />} />
+
+          {/* Teacher Dashboard with Nested Routes */}
+          <Route
+            path="/member/dashboard"
+            element={
+              <ProtectedRoute requiredRole="teacher">
+                <TeacherDashboard userId={userId} />
+              </ProtectedRoute>
+            }
+          >
+            {/* Nested routes for ParentDashboard */}
+            <Route path="logout" element={<Logout />} />
+          </Route>
+
+           {/* Vendor Dashboard with Nested Routes */}
+           <Route
+            path="vendor/dashboard"
+            element={
+              <ProtectedRoute requiredRole="teacher">
+                <VendorDashboard userId={userId}/>
+              </ProtectedRoute>
+            }
+          >
+            {/* Nested routes for ParentDashboard */}
+            <Route path="logout" element={<Logout/>}/>
+          </Route>
+
           {/* Parent Dashboard with Nested Routes */}
           <Route
             path="/member/dashboard"
             element={
               <ProtectedRoute requiredRole="sponsor">
-                <ParentDashboard userId={userId}/>
+                <ParentDashboard userId={userId} />
               </ProtectedRoute>
             }
           >
             {/* Nested routes for ParentDashboard */}
-            <Route path="make-payment" element={<MakePayment userId={userId}/>} />
+            <Route path="make-payment" element={<MakePayment userId={userId} />} />
             <Route path="payment-history" element={<PaymentHistory userId={userId} />} />
-            <Route path="student-progress" element={<StudentProgress userId={userId}/>} />
-            <Route path="profile" element={<Profile userId={userId}/>} />
+            <Route path="student-progress" element={<StudentProgress userId={userId} />} />
+            <Route path="profile" element={<Profile userId={userId} />} />
             <Route path="communication" element={<Communication />} />
-            <Route path="logout" element={<Logout/>}/>
+            <Route path="logout" element={<Logout />} />
           </Route>
 
           {/* Admin Dashboard with Nested Routes */}
@@ -70,13 +104,13 @@ function App() {
           >
             {/* Nested routes for AdminDashboard */}
             <Route path="payment-management" element={<PaymentManagement />} />
-            <Route path="add-student" element={<AddStudent schoolId={schoolId}/>} />
-            <Route path="add-user" element={<AddUser schoolId={schoolId}/>} />
-            <Route path="manage-students" element={<ManageStudents schoolId={schoolId}/>} />
+            <Route path="add-student" element={<AddStudent schoolId={schoolId} />} />
+            <Route path="add-user" element={<AddUser schoolId={schoolId} />} />
+            <Route path="manage-students" element={<ManageStudents schoolId={schoolId} />} />
             <Route path="teacher-management" element={<TeacherManagement />} />
-            <Route path="class-management" element={<ClassManagement schoolId={schoolId}/>} />
+            <Route path="class-management" element={<ClassManagement schoolId={schoolId} />} />
             <Route path="announcements" element={<Announcements />} />
-            <Route path="logout" element={<Logout/>}/>
+            <Route path="logout" element={<Logout />} />
           </Route>
 
           {/* Redirect unknown routes */}
