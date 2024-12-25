@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import "./css/main.css";
 import axiosInstance from '../../src/api/axios';
+import Header from './common/Header';
+import Footer from './common/Footer';
+
 
 const MemberUserLogin = () => {
     const [schoolId, setSchoolId] = useState('');
@@ -54,7 +57,9 @@ const MemberUserLogin = () => {
     };
 
     return (
-        <div className="login-container">
+        <div>
+            <Header />
+            <div className="login-container">
             <div className="login-form">
                 <h3>Student or Teacher Login</h3>
                 {error && <p className="error-message">{error}</p>}
@@ -87,6 +92,8 @@ const MemberUserLogin = () => {
                     <Link to="/register">Register</Link>
                 </div>
             </div>
+        </div>
+            <Footer />
         </div>
     );
 };

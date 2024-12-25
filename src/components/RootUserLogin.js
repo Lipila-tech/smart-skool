@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import "./css/main.css";
 import axiosInstance from '../../src/api/axios';
+import Header from './common/Header';
+import Footer from './common/Footer';
+
 
 const RootUserLogin = () => {
   const [adminEmail, setadminEmail] = useState('');
@@ -51,32 +54,36 @@ const RootUserLogin = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-form">
-        <h3>Admin Login</h3>
-        {error && <p className="error-message">{error}</p>}
-        <form onSubmit={handleRootLogin}>
-          <input
-            type="username"
-            placeholder="Username"
-            value={adminEmail}
-            onChange={(e) => setadminEmail(e.target.value)}
-            className="login-input"
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={adminPassword}
-            onChange={(e) => setadminPassword(e.target.value)}
-            className="login-input"
-          />
-          <button type="submit" className="lr-button">Login</button>
-        </form>
-        <div className="links">
-          <Link to="/member-login">Member Login</Link>
-          <Link to="/register">Register</Link>
+    <div>
+      <Header />
+      <div className="login-container">
+        <div className="login-form">
+          <h3>Admin Login</h3>
+          {error && <p className="error-message">{error}</p>}
+          <form onSubmit={handleRootLogin}>
+            <input
+              type="username"
+              placeholder="Username"
+              value={adminEmail}
+              onChange={(e) => setadminEmail(e.target.value)}
+              className="login-input"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={adminPassword}
+              onChange={(e) => setadminPassword(e.target.value)}
+              className="login-input"
+            />
+            <button type="submit" className="lr-button">Login</button>
+          </form>
+          <div className="links">
+            <Link to="/member-login">Member Login</Link>
+            <Link to="/register">Register</Link>
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
