@@ -55,7 +55,6 @@ const RootUserLogin = () => {
 
   return (
     <div>
-      <Header />
       <div className="login-container">
         <div className="login-form">
           <h3>Admin Login</h3>
@@ -79,7 +78,7 @@ const RootUserLogin = () => {
           </form>
           <div className="links">
             <Link to="/member-login">Member Login</Link>
-            <Link to="/register">Register</Link>
+            <Link to="/register">Create a new SS account</Link>
           </div>
         </div>
       </div>
