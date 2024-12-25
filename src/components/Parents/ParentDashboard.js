@@ -20,9 +20,9 @@ function ParentDashboard({ schoolId }) {
   }, []);
   const [dashboardData, setDashboardData] = useState({
     students: 0,
-    schools: 0,
     communications: 0,
     outstandingPayments: 0,
+    outstandingLoans: 0,
     payments: 0,
   });
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
@@ -119,8 +119,8 @@ function ParentDashboard({ schoolId }) {
                 <p>{dashboardData.students}</p>
               </div>
               <div className="dashboard-card teachers-card">
-                <h3>Schools</h3>
-                <p>{dashboardData.schools}</p>
+                <h3>Outstanding Loans</h3>
+                <p>{dashboardData.outstandingLoans}</p>
               </div>
               <div className="dashboard-card outstanding-payments-card">
                 <h3>Outstanding Payments</h3>

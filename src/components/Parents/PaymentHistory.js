@@ -52,23 +52,4 @@ function PaymentHistory() {
   );
 }
 
-const styles = {
-  container: {
-    padding: "20px",
-  },
-  table: {
-    width: "100%",
-    borderCollapse: "collapse",
-  },
-  th: {
-    borderBottom: "1px solid #ddd",
-    padding: "8px",
-    textAlign: "left",
-  },
-  td: {
-    borderBottom: "1px solid #ddd",
-    padding: "8px",
-  },
-};
-
 export default PaymentHistory;

@@ -4,7 +4,7 @@ import "../css/adminDashboard.css";
 import AdminLinks from "./AdminLinks";
 import { Outlet } from 'react-router-dom';
 import axiosInstance from '../../api/axios';
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 
 
 function AdminDashboard({ schoolId }) {
