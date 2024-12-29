@@ -123,7 +123,7 @@ function ClassManagement({ schoolId }) {
               </td>
               <td>
                 {/* New button to view class details */}
-                <button onClick={() => alert(`View class details: ${cls.id}`)}>
+                <button onClick={() => alert(`View class details: ${cls.name}`)}>
                   View Class
                 </button>
                 <button onClick={() => alert(`Edit class: ${cls.name}`)}>
