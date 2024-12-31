@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import "../css/makePayment.css";
+import PaymentForm from "../PaymentForm";
+
 
 function MakePayment() {
   const [amount, setAmount] = useState("");
@@ -119,7 +121,9 @@ function MakePayment() {
             </table>
             <p className="total-amount">Total Amount Due: K{totalAmountDue}</p>
           </div>
-          <form onSubmit={handlePayment} className="payment-form">
+          <p>Payment method</p>
+          < PaymentForm />
+          {/* <form onSubmit={handlePayment} className="payment-form">
             <lable>Enter amount to pay:
               <input
                 type="number"
@@ -149,7 +153,7 @@ function MakePayment() {
             <button type="submit" className="payment-button" disabled={isContinueDisabled}>
               Continue
             </button>
-          </form>
+          </form> */}
         </>
       ) : showLoanTerms ? (
         <div className="loan-terms">
